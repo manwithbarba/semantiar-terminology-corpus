@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+title: "SemantIAr: Mapeo terminológico rioplatense a SNOMED CT"
+version: "1.0.0-rc1"
+date-released: 2026-09-28
+abstract: >-
+  Mapeo de formas clínicas y formas breves del español rioplatense hacia SNOMED CT,
+  sin textos clínicos libres ni identificadores de caso. Incluye estados explícitos
+  para acuerdos humanos, adjudicación clínica y candidatos léxicos FAISS pendientes
+  de validación.
+authors:
+  - family-names: "Sánchez Viamonte"
+    given-names: "Julián"
+    affiliation: "Facultad de Ciencias Médicas, Universidad Nacional de La Plata"
+  - name: "Proyecto SemantIAr"
+keywords:
+  - clinical terminology
+  - Spanish Rioplatense
+  - terminology mapping
+  - SNOMED CT
+  - clinical abbreviations
+license: "CC-BY-SA-4.0"

@@ -1,0 +1,38 @@
+SEMANTIAR — LICENCIA DE DATOS
+
+Copyright (c) 2026 Proyecto SemantIAr
+Investigador responsable: Julián Sánchez Viamonte
+Facultad de Ciencias Médicas, Universidad Nacional de La Plata (UNLP)
+
+Este conjunto de datos se distribuye bajo licencia Creative Commons
+Atribución-CompartirIgual 4.0 Internacional (CC BY-SA 4.0).
+
+Usted es libre de:
+
+- Compartir: copiar y redistribuir el material en cualquier medio o formato.
+- Adaptar: remezclar, transformar y construir a partir del material para
+  cualquier propósito, incluso comercial.
+
+Bajo los siguientes términos:
+
+- Atribución: debe otorgar crédito al Proyecto SemantIAr, proporcionar un
+  enlace a la licencia e indicar si se realizaron cambios.
+- CompartirIgual: si remezcla, transforma o crea a partir del material, debe
+  distribuir su contribución bajo la misma licencia del original.
+
+Texto completo de la licencia:
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+Condiciones adicionales:
+
+1. Las descripciones y SCTID de SNOMED CT contenidos en este paquete están
+   sujetos a la licencia aplicable de SNOMED International. Cada usuario debe
+   verificar su licencia nacional antes de redistribuir componentes de SNOMED CT.
+   Véase NOTICE-SNOMED.md.
+
+2. Las formas superficiales proceden de registros clínicos desidentificados.
+   Queda prohibida toda actividad de reidentificación, vinculación inversa
+   con pacientes o uso para decisiones clínicas.
+
+3. La ficha de datos (DATASET_CARD.md) y sus limitaciones deben acompañar
+   cualquier redistribución.

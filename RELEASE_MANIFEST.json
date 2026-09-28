@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "semantiar-terminology-mapping.v1",
+  "release": "SEMANTIAR-TERMINOLOGIA-RIOPLATENSE-20260928",
+  "locale": "es-AR",
+  "terminology": {
+    "editionUri": "http://snomed.info/sct/11000221109/version/20260520",
+    "licenseReviewRequired": true
+  },
+  "counts": {
+    "inputOccurrences": 1646,
+    "publishedOccurrences": 1560,
+    "excludedOccurrences": 86,
+    "publishedTerms": 1365,
+    "humanDecisionOccurrences": 1088,
+    "faissCandidateOccurrences": 472,
+    "faissAtOrAboveThresholdOccurrences": 466,
+    "faissBelowThresholdOccurrences": 6,
+    "exactDuplicateOccurrenceExcessRows": 56,
+    "exactDuplicateOccurrenceRowsInGroups": 111,
+    "exactDuplicateOccurrenceGroups": 55
+  },
+  "qualityPolicy": {
+    "human": "human_agreement and human_adjudicated are source-backed human decisions.",
+    "faiss": "faiss_candidate and faiss_candidate_below_threshold are provisional algorithmic candidates pending human validation.",
+    "privacy": "No clinicalText, caseId, blindRecordId, annotatorId, sourcePair or adjudication rationale is emitted.",
+    "publicOccurrenceIdentity": "Occurrences have no public unique identifier; exact duplicates may represent distinct source appearances and must be retained by default."
+  },
+  "documentation": {
+    "validatedReadme": {
+      "file": "README_ORIGINAL.md",
+      "source": "README_VALIDADO.md",
+      "sha256": "def8a99e387ead457fa59a067c02e15f76be6314d959b1d9b9168aaa420849f8",
+      "scope": "Validated methodological documentation for the full publication workspace; README.md describes this public payload."
+    }
+  },
+  "integrityPolicy": {
+    "algorithm": "SHA-256",
+    "manifestSelfHashExcluded": true,
+    "reason": "RELEASE_MANIFEST.json is inventoried but excluded from its own digest map to avoid self-reference."
+  },
+  "files": [
+    "terminology_mapping.jsonl",
+    "terminology_occurrences.jsonl",
+    "SCHEMA_MAPPING.json",
+    "EXCLUSIONS.json",
+    "DATASET_CARD.md",
+    "README.md",
+    "README_ORIGINAL.md",
+    "CONTRATO_CAPA_LEXICA_V2.md",
+    "METODOLOGIA_Y_PROCEDIMIENTO.md",
+    "ETIQUETAS_Y_CAMPOS.md",
+    "LICENSE-DATA.txt",
+    "NOTICE-SNOMED.md",
+    "CITATION.cff",
+    "validate_public_release.py",
+    "PUBLIC_RELEASE_ALLOWLIST.txt",
+    "RELEASE_MANIFEST.json"
+  ],
+  "sha256": {
+    "terminology_mapping.jsonl": "ec2ae26d2b543eaf19dfcb79f0888dc23908826e2f8988434c720da40664d1bc",
+    "terminology_occurrences.jsonl": "a3bbb365c46ba1dbf7ba027c9dc1fc7222ca8e9e3c9e4b3a52d9f322d1016976",
+    "SCHEMA_MAPPING.json": "fe5be75b823b5a8a94312423fcd1b51743d8bc095cf4f430099275b37a407b70",
+    "EXCLUSIONS.json": "d2a61a89136b65477dd27b9d61a0048ade9b69a1d2dc79a817715b6c60ac2d02",
+    "DATASET_CARD.md": "7e5842fcba5821c9439ec314828e086160e0ef5213dc94a174203d8f790b2923",
+    "README.md": "f32e72a51c4f891421928b6121f84c7d60081f1761ac74c367f437076f7c5265",
+    "README_ORIGINAL.md": "def8a99e387ead457fa59a067c02e15f76be6314d959b1d9b9168aaa420849f8",
+    "CONTRATO_CAPA_LEXICA_V2.md": "56e9c3ff03eb64c8703df5468cd0880bfd932f49f231abd88b275fc3eb7a5766",
+    "METODOLOGIA_Y_PROCEDIMIENTO.md": "eebbff247779126fd835d66aa97e3216421b365f5b2a7336225d9c3459077292",
+    "ETIQUETAS_Y_CAMPOS.md": "09e5a4cf1446a0f9cbe26d927036b266e3803025d6914fd8702513bddb0f69f5",
+    "LICENSE-DATA.txt": "0fc8e46542e35716a44eaadb575f197a65bc92135d6672cd0bb7e10e10be3780",
+    "NOTICE-SNOMED.md": "a43beff3dfded3aec96d6cf68e89e10d7b593a84913423850019e51958d443ad",
+    "CITATION.cff": "a91902c8b61cb1bb50e55f8f329e5c6a21dae482de2b618f68e64efe17e3eaf2",
+    "validate_public_release.py": "1f4c2999e96aeca886d0a9ef0ef3ff46fb9099d1872e5d0d4abe47c17aaaee63",
+    "PUBLIC_RELEASE_ALLOWLIST.txt": "f9572a64fdf2cf703e313f61f71df7fcffed993e70dbd1e248646c670f3a2e50"
+  }
+}

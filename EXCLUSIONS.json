@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "semantiar-terminology-mapping.v1",
+  "inputOccurrences": 1646,
+  "publishedOccurrences": 1560,
+  "excludedOccurrences": 86,
+  "excludedByReason": {
+    "mapping_fields_missing": 79,
+    "surface_missing": 7
+  },
+  "excludedByLayerEvidenceReason": {
+    "clinical|adjudicated_disagreement|surface_missing": 7,
+    "clinical|agreement|mapping_fields_missing": 75,
+    "lexical|adjudicated_disagreement|mapping_fields_missing": 4
+  },
+  "policy": "Rows without a surface or complete SCTID, term and category are excluded from the public mapping; they remain in the restricted adjudication material."
+}

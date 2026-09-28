@@ -1,0 +1,491 @@
+{
+  "terms": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "urn:semantiar:terminology-mapping-v1",
+    "title": "SemantIAr public Spanish Rioplatense terminology mapping",
+    "type": "object",
+    "required": [
+      "termId",
+      "layer",
+      "evidence",
+      "surface",
+      "surfaceNormalized",
+      "sctid",
+      "term",
+      "category",
+      "mappingStatus",
+      "occurrenceCount",
+      "agreementOccurrences",
+      "adjudicatedOccurrences",
+      "noteTypes",
+      "specialties"
+    ],
+    "properties": {
+      "layer": {
+        "enum": [
+          "clinical",
+          "lexical"
+        ]
+      },
+      "surface": {
+        "type": "string",
+        "minLength": 1
+      },
+      "surfaceNormalized": {
+        "type": "string",
+        "minLength": 1
+      },
+      "sctid": {
+        "type": "string",
+        "pattern": "^[0-9]{6,18}$"
+      },
+      "term": {
+        "type": "string",
+        "minLength": 1
+      },
+      "category": {
+        "type": "string",
+        "minLength": 1
+      },
+      "mappingStatus": {
+        "enum": [
+          "human_agreement",
+          "human_adjudicated",
+          "faiss_candidate",
+          "faiss_candidate_below_threshold"
+        ]
+      },
+      "inferenceScore": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "inferenceMethod": {
+        "type": "string",
+        "minLength": 1
+      },
+      "polarity": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "certainty": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "temporality": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "subject": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "normalizedKey": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "formType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "senseId": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "expansion": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "correctedForm": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "function": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "section": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "termId": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{16}$"
+      },
+      "evidence": {
+        "enum": [
+          "agreement",
+          "adjudicated_disagreement",
+          "mixed"
+        ]
+      },
+      "occurrenceCount": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "agreementOccurrences": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "adjudicatedOccurrences": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "noteTypes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "specialties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      }
+    },
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "mappingStatus": {
+              "enum": [
+                "faiss_candidate",
+                "faiss_candidate_below_threshold"
+              ]
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "inferenceScore",
+            "inferenceMethod"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "mappingStatus": {
+              "enum": [
+                "human_agreement",
+                "human_adjudicated"
+              ]
+            }
+          }
+        },
+        "then": {
+          "not": {
+            "anyOf": [
+              {
+                "required": [
+                  "inferenceScore"
+                ]
+              },
+              {
+                "required": [
+                  "inferenceMethod"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "layer": {
+              "const": "lexical"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "mappingStatus": {
+              "enum": [
+                "faiss_candidate",
+                "faiss_candidate_below_threshold"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "layer": {
+              "const": "clinical"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "mappingStatus": {
+              "enum": [
+                "human_agreement",
+                "human_adjudicated"
+              ]
+            }
+          }
+        }
+      }
+    ]
+  },
+  "occurrences": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "urn:semantiar:terminology-occurrence-v1",
+    "title": "SemantIAr public terminology mapping occurrence",
+    "type": "object",
+    "required": [
+      "layer",
+      "evidence",
+      "surface",
+      "surfaceNormalized",
+      "sctid",
+      "term",
+      "category",
+      "mappingStatus"
+    ],
+    "properties": {
+      "layer": {
+        "enum": [
+          "clinical",
+          "lexical"
+        ]
+      },
+      "surface": {
+        "type": "string",
+        "minLength": 1
+      },
+      "surfaceNormalized": {
+        "type": "string",
+        "minLength": 1
+      },
+      "sctid": {
+        "type": "string",
+        "pattern": "^[0-9]{6,18}$"
+      },
+      "term": {
+        "type": "string",
+        "minLength": 1
+      },
+      "category": {
+        "type": "string",
+        "minLength": 1
+      },
+      "mappingStatus": {
+        "enum": [
+          "human_agreement",
+          "human_adjudicated",
+          "faiss_candidate",
+          "faiss_candidate_below_threshold"
+        ]
+      },
+      "inferenceScore": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "inferenceMethod": {
+        "type": "string",
+        "minLength": 1
+      },
+      "polarity": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "certainty": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "temporality": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "subject": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "normalizedKey": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "formType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "senseId": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "expansion": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "correctedForm": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "function": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "section": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "noteType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "specialty": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "evidence": {
+        "enum": [
+          "agreement",
+          "adjudicated_disagreement"
+        ]
+      }
+    },
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "mappingStatus": {
+              "enum": [
+                "faiss_candidate",
+                "faiss_candidate_below_threshold"
+              ]
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "inferenceScore",
+            "inferenceMethod"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "mappingStatus": {
+              "enum": [
+                "human_agreement",
+                "human_adjudicated"
+              ]
+            }
+          }
+        },
+        "then": {
+          "not": {
+            "anyOf": [
+              {
+                "required": [
+                  "inferenceScore"
+                ]
+              },
+              {
+                "required": [
+                  "inferenceMethod"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "layer": {
+              "const": "lexical"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "mappingStatus": {
+              "enum": [
+                "faiss_candidate",
+                "faiss_candidate_below_threshold"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "layer": {
+              "const": "clinical"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "mappingStatus": {
+              "enum": [
+                "human_agreement",
+                "human_adjudicated"
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}
