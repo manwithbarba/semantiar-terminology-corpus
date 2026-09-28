@@ -5,7 +5,7 @@ Versión de salida: `semantiar-terminology-mapping.v1`
 Fecha: `2026-09-28`  
 Investigador responsable: **Julián Sánchez Viamonte**  
 Filiación: **Facultad de Ciencias Médicas, Universidad Nacional de La Plata (UNLP)**  
-Licencia: **Creative Commons Atribución-CompartirIgual 4.0 Internacional (CC BY-SA 4.0)**  
+Licencia: **Creative Commons Atribución- 4.0 Internacional (CC BY-SA 4.0)**  
 
 ---
 
