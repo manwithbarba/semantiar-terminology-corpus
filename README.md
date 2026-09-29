@@ -27,7 +27,7 @@ Profesionales de la salud capacitados (anotadores) realizaron la tarea de identi
 - **Capa clínica:** Identificación de spans de texto que representan tres jerarquías en la ontología de SNOMED: hallazgos clínicos, procedimientos y fármacos, asociándolos a su respectivo identificador de concepto SNOMED CT (`sctid`), término preferido y categoría semántica.
 - **Capa léxica:** Delimitación y caracterización contextual de formas breves, siglas, abreviaturas y términos sintácticos rioplatenses, registrando su forma superficial, tipo de forma, función discursiva y sentido contextual clínico (`senseId`).
 
-Los anotadores trabajaron de manera independiente, se constituyeron 14 parejas de anotadores, con 7 muestras en total (una muestra por pareja de anotador) de 5 notas clínicas de nivel básico.
+Los anotadores trabajaron de manera independiente, se constituyeron 15 parejas de anotadores, con 15 muestras en total (una muestra por pareja de anotador) de 5 notas clínicas de nivel básico.
 
 ### 2.3 Evaluación de concordancia interanotador
 Se compararon de forma reproducible las parejas de anotadores que completaron los mismos conjuntos de casos clínicos. Aquellas menciones donde ambos anotadores coincidieron con exactitud en los límites del span textual y en la codificación ontológica asignada constituyen el subconjunto de consenso directo (**Capa Gold**).
