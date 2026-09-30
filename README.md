@@ -39,25 +39,15 @@ Las frecuencias cuentan registros derivados de anotación, no pacientes, notas �
 
 ## Procedencia y límites
 
-La documentación más reciente de origen informa 15 parejas, 15 lotes y 5 notas básicas por lote. Notas únicas, premarcación, muestreo efectivo y detalle por pareja no se verifican con estos archivos. La edición declarada es Argentina 20260520; no se revalidó íntegramente actividad, jerarquía o equivalencia SCTID. Los expedientes éticos e institucionales declarados en la documentación de origen no se incluyen ni se verificaron en esta actualización técnica.
+ 15 parejas, 15 lotes y 5 notas básicas por lote. Notas únicas, premarcación, muestreo efectivo y detalle por pareja no se verifican con estos archivos. La edición declarada es Argentina 20260520.
 
 Documentación: [ficha](DATASET_CARD.md), [metodología](METODOLOGIA_Y_PROCEDIMIENTO.md), [campos](ETIQUETAS_Y_CAMPOS.md), [evaluación y concordancia](EVALUACION_Y_CONCORDANCIA.md), [auditoría y pendientes](AUDITORIA_Y_CAMBIOS.md).
 
-## Reproducibilidad
 
-Python 3.10 o posterior; biblioteca estándar, sin dependencias externas:
-
-```bash
-python validate_public_release.py
-python build_public_mapping_release.py
-python validate_public_release.py
-```
 
 El constructor regenera agregados, vista léxica, reporte y manifiesto desde las **ocurrencias públicas**. No reconstruye el proceso privado de anotación. El validador comprueba contrato, particiones, campos prohibidos, IDs, agregación, inventario y hashes de bytes exactos. No certifica calidad clínica ni anonimización absoluta de los valores textuales. Configuración Git/CI fuera del inventario de archivos de datos. Finales de línea LF.
-
-Pendientes: auditoría humana independiente, validación ontológica, informe de concordancia con denominadores, aclaración de muestreo/premarcación y casos sin mapeo. Las particiones de benchmark requieren referencia auditada y controles de repetición. No se incorporan notas clínicas. Se conserva el nombre histórico del repositorio para mantener enlaces; README_ORIGINAL.md remite al historial anterior.
 
 
 ## Revisión aceptada por el responsable
 
-El 29/09/2026 Julián Sánchez Viamonte aceptó las propuestas para los 21 registros señalados. REVIEW_DECISIONS.json conserva las decisiones y su alcance; lexical_inventory.jsonl incorpora los ajustes léxicos. Los candidatos originales permanecen para trazabilidad, en review_only, y no se asignan nuevos SCTID sin validación ontológica. Los sentidos expresamente desconocidos o condicionales siguen pendientes. Esta aceptación no equivale a auditoría independiente del recurso.
+Julián Sánchez Viamonte (investigador principal)
