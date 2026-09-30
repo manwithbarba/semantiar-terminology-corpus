@@ -6,9 +6,11 @@ Datos propios: **CC BY-SA 4.0**, sujeto a [NOTICE-SNOMED.md](NOTICE-SNOMED.md).
 
 ## Qué es
 
-Publica expresiones clínicas y formas breves registradas durante la anotación de notas desidentificadas de la Historia de Salud Integrada de la Provincia de Buenos Aires. Conserva formas, expansiones, decisiones humanas, atributos de significado y propuestas de conceptos SNOMED CT. Su unidad es un registro léxico-terminológico derivado de anotación.
+Corpus Publico de expresiones clínicas y formas breves registradas durante la anotación de notas desidentificadas de la Historia de Salud Integrada de la Provincia de Buenos Aires. Conserva formas, expansiones, decisiones humanas, atributos de significado y propuestas de conceptos SNOMED CT. Su unidad es un registro léxico-terminológico derivado de anotación.
 
-Sirve para lookup, diccionarios, estudio de variantes, expansión léxica y generación de candidatos. La semántica está representada por conceptos y atributos con estados de validación explícitos. La entrega pública no incluye notas clínicas; no permite evaluar NER, límites de spans, omisiones ni interpretación contextual desde la nota. No constituye un gold standard auditado ni valida IIS/IIC.
+## Para qué sirve
+
+Sirve para lookup, diccionarios, estudio de variantes, expansión léxica y generación de candidatos. La semántica está representada por conceptos y atributos con estados de validación explícitos. La entrega no incluye notas clínicas; no permite evaluar NER, límites de spans, omisiones ni interpretación contextual desde la nota.
 
 ## Archivos publicados
 
