@@ -1,0 +1,427 @@
+{
+  "date": "2026-09-29",
+  "reviewer": "Julián Sánchez Viamonte",
+  "approvalEvidence": "acepto todas las propuestas, adelante",
+  "scope": "Acceptance of lexical corrections and candidate dispositions. Does not independently validate SCTIDs, recover source context or resolve meanings explicitly left unknown.",
+  "decisions": [
+    {
+      "reviewNumber": 1,
+      "occurrenceId": "62d781d25033d9f33e5887f1",
+      "surface": "(O2 3 LT)",
+      "originalCandidate": {
+        "sctid": "401955005",
+        "term": "tubo de oxígeno, 300 litros",
+        "score": 0.7001
+      },
+      "lexicalChanges": {
+        "expansion": "aporte de oxígeno a 3 litros",
+        "senseId": "aporte de oxígeno a 3 litros",
+        "function": "entity",
+        "lexicalValidationStatus": "proposal_accepted_by_project_responsible"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Separar oxigenoterapia y flujo. L/min requiere confirmación explícita; no se agrega denominador temporal a la fuente.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 2,
+      "occurrenceId": "e1f9467dda5f29d1f03e494a",
+      "surface": "++",
+      "originalCandidate": {
+        "sctid": "441517005",
+        "term": "presente ++ sobre +++",
+        "score": 0.7981
+      },
+      "lexicalChanges": {
+        "expansion": null,
+        "senseId": null,
+        "function": "modifier",
+        "lexicalValidationStatus": "not_documented"
+      },
+      "mappingAction": "withhold_mapping",
+      "note": "Símbolo semicuantitativo; escala y elemento calificado desconocidos.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 3,
+      "occurrenceId": "8d7d3ac79101b44f70404d40",
+      "surface": "3L",
+      "originalCandidate": {
+        "sctid": "258775009",
+        "term": "femtolitro",
+        "score": 0.7084
+      },
+      "lexicalChanges": {
+        "expansion": "tres litros",
+        "senseId": "tres litros",
+        "function": "value",
+        "lexicalValidationStatus": "proposal_accepted_by_project_responsible"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Valor 3, unidad L. No inferir L/min sin confirmación explícita.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 4,
+      "occurrenceId": "c463b41a87b3823d4b767725",
+      "surface": "a/a",
+      "originalCandidate": {
+        "sctid": "224786002",
+        "term": "medio ambiente al aire libre",
+        "score": 0.8751
+      },
+      "lexicalChanges": {
+        "expansion": "aire ambiente",
+        "senseId": "aire ambiente",
+        "function": "entity",
+        "lexicalValidationStatus": "proposal_accepted_by_project_responsible"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Conservar sentido aire ambiente; respira aire ambiente solo si describe al paciente.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 5,
+      "occurrenceId": "cbe61fc520ba0b99f98eb19c",
+      "surface": "aci",
+      "originalCandidate": {
+        "sctid": "36021000221109",
+        "term": "AUCIC",
+        "score": 0.7262
+      },
+      "lexicalChanges": {
+        "expansion": null,
+        "senseId": null,
+        "lexicalValidationStatus": "not_documented"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Sentido desconocido; no expandir aci por similitud.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 6,
+      "occurrenceId": "4354a615a67bb8b75e16826b",
+      "surface": "ar",
+      "originalCandidate": {
+        "sctid": "257996005",
+        "term": "r",
+        "score": 0.7084
+      },
+      "lexicalChanges": {
+        "expansion": null,
+        "senseId": null,
+        "lexicalValidationStatus": "not_documented"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Sentido ambiguo; Clínica médica no permite desambiguar ar.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 7,
+      "occurrenceId": "e6bfdc318b3e2a7221826ce7",
+      "surface": "beta IM 3/3 mg",
+      "originalCandidate": {
+        "sctid": "234731000221106",
+        "term": "MYVITLA [IXAZOMIB 3 MG] CAPSULA DURA por 3 UNIDADES",
+        "score": 0.6204
+      },
+      "lexicalChanges": {
+        "expansion": "betametasona intramuscular, 3/3 mg",
+        "senseId": "betametasona intramuscular, 3/3 mg",
+        "function": "entity",
+        "lexicalValidationStatus": "proposal_accepted_by_project_responsible"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Capa humana registra betametasona. Presentación y significado de 3/3 no se infieren.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 8,
+      "occurrenceId": "bc93a9db2b55b2905f6c2a3f",
+      "surface": "beta IM 3/3 mg",
+      "originalCandidate": {
+        "sctid": "234731000221106",
+        "term": "MYVITLA [IXAZOMIB 3 MG] CAPSULA DURA por 3 UNIDADES",
+        "score": 0.6204
+      },
+      "lexicalChanges": {
+        "expansion": "betametasona intramuscular, 3/3 mg",
+        "senseId": "betametasona intramuscular, 3/3 mg",
+        "function": "entity",
+        "lexicalValidationStatus": "proposal_accepted_by_project_responsible"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Capa humana registra betametasona. Presentación y significado de 3/3 no se infieren.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 9,
+      "occurrenceId": "6dbd7113ab4401aa910ca9fa",
+      "surface": "Control en",
+      "originalCandidate": {
+        "sctid": "31509003",
+        "term": "controlado",
+        "score": 0.8593
+      },
+      "lexicalChanges": {
+        "expansion": "expresión de planificación de seguimiento",
+        "senseId": "expresión de planificación de seguimiento",
+        "function": "structural",
+        "formType": "other",
+        "lexicalValidationStatus": "proposal_accepted_by_project_responsible"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "No es abreviatura; conservar expresión estructural pendiente de complemento, sin mapeo aislado.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 10,
+      "occurrenceId": "dea510267511c7c63f2df8b7",
+      "surface": "cvc",
+      "originalCandidate": {
+        "sctid": "230690007",
+        "term": "ACV",
+        "score": 0.7547
+      },
+      "lexicalChanges": {
+        "expansion": null,
+        "senseId": null,
+        "function": "entity",
+        "lexicalValidationStatus": "not_documented"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Orientación semántica: evaluación del campo visual en Oftalmología. Expansión exacta de CVC pendiente.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 11,
+      "occurrenceId": "dab91de12f90cb6617d86605",
+      "surface": "d+c+",
+      "originalCandidate": {
+        "sctid": "260347006",
+        "term": "presente + de ++++",
+        "score": 0.7567
+      },
+      "lexicalChanges": {
+        "expansion": "diuresis y catarsis presentes",
+        "senseId": "diuresis y catarsis presentes",
+        "function": "result",
+        "lexicalValidationStatus": "proposal_accepted_by_project_responsible"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Propuesta aceptada por responsable: separar diuresis y catarsis con atributos; sin SCTID nuevo.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 12,
+      "occurrenceId": "28ffd141fa4b0ac2e6946cd6",
+      "surface": "EPI",
+      "originalCandidate": {
+        "sctid": "5821000221100",
+        "term": "EXPIT",
+        "score": 0.6702
+      },
+      "lexicalChanges": {
+        "expansion": null,
+        "senseId": null,
+        "lexicalValidationStatus": "not_documented"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Conservar sigla EPI con sentido pendiente, sin EXPIT.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 13,
+      "occurrenceId": "367a7b0af36425cb02c6a367",
+      "surface": "Lab SC",
+      "originalCandidate": {
+        "sctid": "425391000221107",
+        "term": "Laboratorio Celtyc SA",
+        "score": 0.7754
+      },
+      "lexicalChanges": {
+        "expansion": null,
+        "senseId": null,
+        "lexicalValidationStatus": "not_documented"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Lab y SC requieren expansión contextual; no inferir institución.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 14,
+      "occurrenceId": "f3ad63f1339aef275b25e6d9",
+      "surface": "LDL",
+      "originalCandidate": {
+        "sctid": "259565004",
+        "term": "LDL, subfracción 1",
+        "score": 0.7213
+      },
+      "lexicalChanges": {
+        "expansion": "lipoproteína de baja densidad",
+        "senseId": "lipoproteína de baja densidad",
+        "function": "modifier",
+        "lexicalValidationStatus": "proposal_accepted_by_project_responsible"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Retirar subfracción 1. Distinguir lipoproteína, colesterol LDL y medición según contexto.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 15,
+      "occurrenceId": "e47c67ecb7c86452790d1548",
+      "surface": "no reactivo",
+      "originalCandidate": {
+        "sctid": "131194007",
+        "term": "no reactivo",
+        "score": 1.0
+      },
+      "lexicalChanges": {
+        "expansion": null,
+        "senseId": null,
+        "formType": "other",
+        "function": "result",
+        "lexicalValidationStatus": "not_applicable"
+      },
+      "mappingAction": "retain_candidate_pending_ontology_validation",
+      "note": "Expresión literal de resultado, no abreviatura. Candidato plausible; SCTID y prueba pendientes.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 16,
+      "occurrenceId": "e555f899efc864d053f17390",
+      "surface": "no reactivo",
+      "originalCandidate": {
+        "sctid": "131194007",
+        "term": "no reactivo",
+        "score": 1.0
+      },
+      "lexicalChanges": {
+        "expansion": null,
+        "senseId": null,
+        "formType": "other",
+        "function": "result",
+        "lexicalValidationStatus": "not_applicable"
+      },
+      "mappingAction": "retain_candidate_pending_ontology_validation",
+      "note": "Expresión literal de resultado, no abreviatura. Candidato plausible; SCTID y prueba pendientes.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 17,
+      "occurrenceId": "147f2d96ac057f15eb877a48",
+      "surface": "PGE",
+      "originalCandidate": {
+        "sctid": "52091009",
+        "term": "PGE",
+        "score": 1.0
+      },
+      "lexicalChanges": {
+        "expansion": null,
+        "senseId": null,
+        "lexicalValidationStatus": "not_documented"
+      },
+      "mappingAction": "withhold_mapping",
+      "note": "Coincidencia PGE/PGE no desambigua el significado; expansión pendiente.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 18,
+      "occurrenceId": "4e75daabd407a42899d932e9",
+      "surface": "PPL",
+      "originalCandidate": {
+        "sctid": "148731000",
+        "term": "Lumbar puncture",
+        "score": 0.6925
+      },
+      "lexicalChanges": {
+        "expansion": "puñopercusión lumbar",
+        "senseId": "puñopercusión lumbar",
+        "function": "entity",
+        "lexicalValidationStatus": "proposal_accepted_by_project_responsible"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Retirar punción lumbar. Distinguir maniobra y resultado antes de asignar concepto.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 19,
+      "occurrenceId": "978eef2f856993ae5f2f4229",
+      "surface": "PPL",
+      "originalCandidate": {
+        "sctid": "148731000",
+        "term": "Lumbar puncture",
+        "score": 0.6925
+      },
+      "lexicalChanges": {
+        "expansion": "puñopercusión lumbar",
+        "senseId": "puñopercusión lumbar",
+        "function": "entity",
+        "lexicalValidationStatus": "proposal_accepted_by_project_responsible"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Retirar punción lumbar. Distinguir maniobra y resultado antes de asignar concepto.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 20,
+      "occurrenceId": "d2cd4188d92533b482a2176a",
+      "surface": "predominio nocturno",
+      "originalCandidate": {
+        "sctid": "2546009",
+        "term": "nocturno",
+        "score": 0.8188
+      },
+      "lexicalChanges": {
+        "expansion": null,
+        "senseId": null,
+        "function": "modifier",
+        "formType": "other",
+        "lexicalValidationStatus": "not_applicable"
+      },
+      "mappingAction": "retain_candidate_pending_ontology_validation",
+      "note": "Conservar predominio nocturno como modificador; nocturno no representa por sí solo predominio.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    },
+    {
+      "reviewNumber": 21,
+      "occurrenceId": "1e98c8148300f6e84e453b24",
+      "surface": "R3 R4 -",
+      "originalCandidate": {
+        "sctid": "274819007",
+        "term": "reflejo tricipital, ausente",
+        "score": 0.6538
+      },
+      "lexicalChanges": {
+        "expansion": "tercer y cuarto ruidos cardíacos ausentes",
+        "senseId": "tercer y cuarto ruidos cardíacos ausentes",
+        "function": "result",
+        "lexicalValidationStatus": "proposal_accepted_by_project_responsible"
+      },
+      "mappingAction": "reject_candidate",
+      "note": "Separar R3 y R4 ausentes. Revisar capa humana ruidos cardíacos anormales/Activo; sin vínculo documental no se cambia automáticamente esa fila.",
+      "approvalStatus": "accepted_by_project_responsible",
+      "ontologyValidationStatus": "not_performed"
+    }
+  ]
+}

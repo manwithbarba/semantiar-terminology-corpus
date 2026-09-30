@@ -1,3 +1,5 @@
+> Documento de origen de la plataforma de anotación. Sus rutas, interfaces y pruebas describen el entorno privado y no son requisitos ejecutables de este recurso público. El contrato público vigente es SCHEMA_MAPPING.json; ver ETIQUETAS_Y_CAMPOS.md. Los estados de decisión de origen no se exportan completos en esta entrega.
+
 # Contrato técnico de la capa léxica (Abreviaturas contextuales v2)
 
 Este documento define el contrato ejecutable compartido por el modelo
@@ -97,7 +99,7 @@ exportan: la forma y su significado deben decidirse manualmente.
 ## Schema y compatibilidad v2
 
 La fuente canónica es
-[`schemas/lexical-layer-v2.schema.json`](../schemas/lexical-layer-v2.schema.json).
+`schemas/lexical-layer-v2.schema.json` (ruta del proyecto privado de anotación).
 El generador de releases la copia como `LEXICAL_LAYER_SCHEMA_V2.json` en Core
 Blind, básico y avanzado. Los tres archivos deben conservar el mismo SHA-256.
 

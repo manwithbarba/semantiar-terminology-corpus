@@ -1,0 +1,40 @@
+{
+  "scope": "Descriptive statistics of published annotation-derived records; not inter-annotator agreement or clinical prevalence.",
+  "humanOccurrences": 1088,
+  "candidateOccurrences": 472,
+  "publishedOccurrences": 1560,
+  "humanEntries": 953,
+  "candidateEntries": 412,
+  "totalEntries": 1365,
+  "uniqueNormalizedSurfaces": 904,
+  "distinctSctidsIncludingCandidates": 899,
+  "singletonEntries": 1230,
+  "surfacesWithMultipleSctids": 184,
+  "mappingStatusCounts": {
+    "faiss_candidate": 466,
+    "faiss_candidate_below_threshold": 6,
+    "human_adjudicated": 878,
+    "human_agreement": 210
+  },
+  "exactDuplicateExcessIgnoringPublicOccurrenceId": 56,
+  "reviewOnlyCandidateOccurrences": 21,
+  "independentlyAuditedOccurrences": 0,
+  "acceptedReviewDecisions": 21,
+  "acceptedMappingActions": {
+    "reject_candidate": 16,
+    "retain_candidate_pending_ontology_validation": 3,
+    "withhold_mapping": 2
+  },
+  "interAnnotatorAgreement": {
+    "status": "not_recomputable_from_public_payload",
+    "reason": "No source texts, offsets, paired annotations or denominators are published."
+  },
+  "sampling": {
+    "reportedPairs": 15,
+    "reportedBatches": 15,
+    "reportedNotesPerBatch": 5,
+    "uniqueNotes": null,
+    "premarkingStatus": "not_verified",
+    "source": "README.md at bb36b7f7ebabf10c3f2642ef9cf5040366241f70; numbers reported, not independently verified."
+  }
+}

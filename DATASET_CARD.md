@@ -1,34 +1,30 @@
-# SemantIAr — Mapeo terminológico rioplatense
+# Ficha del recurso léxico-terminológico SemantIAr
 
-Versión candidata: `semantiar-terminology-mapping.v1`
+Versión `semantiar-lexical-terminology.v2`, 29/09/2026. Español clínico rioplatense, derivado de anotaciones HSI, Provincia de Buenos Aires. Responsable: Julián Sánchez Viamonte, FCM UNLP. Edición SNOMED declarada: Argentina 20260520, no revalidada íntegramente en esta actualización.
 
-Esta entrega publica un mapeo de formas clínicas y formas breves del español rioplatense hacia SNOMED CT Edición Nacional Argentina 20260520. No contiene textos clínicos libres, identificadores de caso ni identificadores de anotadores.
+## Composición y unidad
 
-## Contenido
+1.088 registros humanos (210 acuerdos, 878 adjudicados), agregados en 953 entradas; 472 registros FAISS (466 sobre umbral, 6 bajo umbral), agregados en 412 entradas. `lexical_inventory.jsonl` es una vista derivada sin candidatos SNOMED. Conteos en QUALITY_REPORT.json. Unidad: registro derivado de anotación, no documento clínico ni paciente.
 
-- `1365` entradas agregadas en `terminology_mapping.jsonl`.
-- `1560` ocurrencias publicables en `terminology_occurrences.jsonl`.
-- `86` ocurrencias excluidas sobre `1646` originales; el detalle agregado está en `EXCLUSIONS.json`.
-- `1088` ocurrencias con decisión humana y `472` ocurrencias léxicas con candidato FAISS.
-- `6` ocurrencias FAISS por debajo del umbral de 0,70.
+Se conservan 1.560 registros publicables de 1.646 originales declarados. 86 exclusiones: 7 sin superficie y 79 sin mapeo completo; estas últimas incluyen 75 acuerdos clínicos y 4 registros léxicos. No se recuperan ni reconstruyen exclusiones. Estos conteos no permiten estimar concordancia.
 
-## Estados de mapeo
+## Representatividad y calidad
 
-- `human_agreement`: acuerdo exacto entre anotadores.
-- `human_adjudicated`: resolución clínica adjudicada.
-- `faiss_candidate`: candidato léxico inferido con similitud >= 0,70; requiere validación humana.
-- `faiss_candidate_below_threshold`: candidato conservado para transparencia, no recomendado para uso automático.
+El README más reciente de origen declara 15 parejas/15 lotes de 5 notas básicas. No se verifican notas únicas, independencia de apariciones, premarcación, estratificación efectiva ni selección por efector. La calibración básica no representa automáticamente toda la HSI ni el español rioplatense. Las frecuencias no son prevalencia.
 
-La etiqueta `mappingStatus` es obligatoria y no debe interpretarse como una garantía clínica. Las filas FAISS incluyen `inferenceScore` e `inferenceMethod`.
+La capa clínica usa tres categorías; las propuestas léxicas abarcan etiquetas heterogéneas. `categoryCanonical` normaliza escritura sin validar pertenencia ontológica; `category` conserva el original. Faltantes de atributos no son clases negativas. Concepto y atributos deben interpretarse conjuntamente.
 
-## Identidad pública de las ocurrencias
+`mappingValidationStatus`, `lexicalValidationStatus` e `independentAuditStatus` separan vínculo ontológico, expansión y auditoría. Ninguna fila se promueve a auditada aquí. Acuerdo/adjudicación son procedencia, no escala gold/silver. Candidatos separados, sin usarlos como referencia clínica.
 
-`terminology_occurrences.jsonl` no publica un identificador único de caso, aparición ni anotador. Por privacidad, dos filas exactamente iguales pueden representar apariciones distintas. En esta versión hay `56` repeticiones exactas adicionales, distribuidas en `55` grupos que reúnen `111` filas. No deben deduplicarse salvo que el análisis lo requiera de forma explícita.
+## Usos, privacidad y reproducción
 
-## Uso previsto
+Lookup, diccionarios, variantes, expansión y generación de candidatos. Normalización aislada: requiere referencia auditada y particiones independientes. No permite evaluar NER, spans, omisiones, interpretación contextual, IIS/IIC o seguridad clínica, ni autoriza decisiones clínicas directas.
 
-Diccionarios, lookup terminológico, generación de candidatos y estudios de variación léxica rioplatense. No es una autorización para decisiones clínicas directas ni una distribución completa de SNOMED CT. Cada consumidor debe verificar su licencia SNOMED CT aplicable.
+No se agregan notas, IDs documentales fuente, offsets ni anotadores. `occurrenceId` identifica un registro público por contenido y repetición, sin vínculo documental. Controlar claves prohibidas no prueba anonimización absoluta de superficies. Las autorizaciones institucionales son declaradas por el origen y no reexaminadas aquí.
 
-## Exclusiones, privacidad e integridad
+Datos propios CC BY-SA 4.0 sujetos a NOTICE-SNOMED.md. Constructor y validador usan biblioteca estándar. Ver README.md y EVALUACION_Y_CONCORDANCIA.md.
 
-Las filas sin `surface`, `sctid`, `term` o `category` no se publican en el mapeo principal. La carpeta interna `review/` y los insumos de adjudicación permanecen fuera de la distribución pública. `SCHEMA_MAPPING.json` rechaza propiedades no declaradas y `validate_public_release.py` controla esquemas, campos sensibles, conteos, agregación, allowlist y hashes.
+
+## Revisión aceptada por el responsable
+
+El 29/09/2026 Julián Sánchez Viamonte aceptó las propuestas para los 21 registros señalados. REVIEW_DECISIONS.json conserva las decisiones y su alcance; lexical_inventory.jsonl incorpora los ajustes léxicos. Los candidatos originales permanecen para trazabilidad, en review_only, y no se asignan nuevos SCTID sin validación ontológica. Los sentidos expresamente desconocidos o condicionales siguen pendientes. Esta aceptación no equivale a auditoría independiente del recurso.

@@ -1,7 +1,7 @@
 {
   "terms": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "urn:semantiar:terminology-mapping-v1",
+    "$id": "urn:semantiar:lexical-terminology-v2:terms",
     "title": "SemantIAr public Spanish Rioplatense terminology mapping",
     "type": "object",
     "required": [
@@ -18,7 +18,14 @@
       "agreementOccurrences",
       "adjudicatedOccurrences",
       "noteTypes",
-      "specialties"
+      "specialties",
+      "categoryCanonical",
+      "categoryValidationStatus",
+      "mappingValidationStatus",
+      "lexicalValidationStatus",
+      "independentAuditStatus",
+      "mappingUsage",
+      "auditFlags"
     ],
     "properties": {
       "layer": {
@@ -166,6 +173,49 @@
           "type": "string"
         },
         "uniqueItems": true
+      },
+      "categoryCanonical": {
+        "type": "string",
+        "minLength": 1
+      },
+      "categoryValidationStatus": {
+        "const": "source_label_normalized_not_ontology_verified"
+      },
+      "mappingValidationStatus": {
+        "enum": [
+          "human_source_decision",
+          "pending_human_validation"
+        ]
+      },
+      "lexicalValidationStatus": {
+        "enum": [
+          "not_applicable",
+          "source_resolved_not_independently_audited",
+          "not_documented"
+        ]
+      },
+      "independentAuditStatus": {
+        "enum": [
+          "not_audited",
+          "audited"
+        ]
+      },
+      "mappingUsage": {
+        "enum": [
+          "human_reference_requires_audit",
+          "candidate_generation_only",
+          "review_only"
+        ]
+      },
+      "auditFlags": {
+        "type": "array",
+        "items": {
+          "enum": [
+            "below_similarity_threshold",
+            "lexical_sense_not_documented",
+            "expansion_candidate_semantic_mismatch"
+          ]
+        }
       }
     },
     "additionalProperties": false,
@@ -220,25 +270,6 @@
         "if": {
           "properties": {
             "layer": {
-              "const": "lexical"
-            }
-          }
-        },
-        "then": {
-          "properties": {
-            "mappingStatus": {
-              "enum": [
-                "faiss_candidate",
-                "faiss_candidate_below_threshold"
-              ]
-            }
-          }
-        }
-      },
-      {
-        "if": {
-          "properties": {
-            "layer": {
               "const": "clinical"
             }
           }
@@ -258,7 +289,7 @@
   },
   "occurrences": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "urn:semantiar:terminology-occurrence-v1",
+    "$id": "urn:semantiar:lexical-terminology-v2:occurrences",
     "title": "SemantIAr public terminology mapping occurrence",
     "type": "object",
     "required": [
@@ -269,7 +300,15 @@
       "sctid",
       "term",
       "category",
-      "mappingStatus"
+      "mappingStatus",
+      "categoryCanonical",
+      "categoryValidationStatus",
+      "mappingValidationStatus",
+      "lexicalValidationStatus",
+      "independentAuditStatus",
+      "mappingUsage",
+      "auditFlags",
+      "occurrenceId"
     ],
     "properties": {
       "layer": {
@@ -398,6 +437,53 @@
           "agreement",
           "adjudicated_disagreement"
         ]
+      },
+      "categoryCanonical": {
+        "type": "string",
+        "minLength": 1
+      },
+      "categoryValidationStatus": {
+        "const": "source_label_normalized_not_ontology_verified"
+      },
+      "mappingValidationStatus": {
+        "enum": [
+          "human_source_decision",
+          "pending_human_validation"
+        ]
+      },
+      "lexicalValidationStatus": {
+        "enum": [
+          "not_applicable",
+          "source_resolved_not_independently_audited",
+          "not_documented"
+        ]
+      },
+      "independentAuditStatus": {
+        "enum": [
+          "not_audited",
+          "audited"
+        ]
+      },
+      "mappingUsage": {
+        "enum": [
+          "human_reference_requires_audit",
+          "candidate_generation_only",
+          "review_only"
+        ]
+      },
+      "auditFlags": {
+        "type": "array",
+        "items": {
+          "enum": [
+            "below_similarity_threshold",
+            "lexical_sense_not_documented",
+            "expansion_candidate_semantic_mismatch"
+          ]
+        }
+      },
+      "occurrenceId": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{24}$"
       }
     },
     "additionalProperties": false,
@@ -445,25 +531,6 @@
                 ]
               }
             ]
-          }
-        }
-      },
-      {
-        "if": {
-          "properties": {
-            "layer": {
-              "const": "lexical"
-            }
-          }
-        },
-        "then": {
-          "properties": {
-            "mappingStatus": {
-              "enum": [
-                "faiss_candidate",
-                "faiss_candidate_below_threshold"
-              ]
-            }
           }
         }
       },
