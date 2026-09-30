@@ -25,7 +25,7 @@ Las particiones humanas y automáticas conservan los 1.560 registros previos. El
 
 ## Calidad y uso
 
-`human_agreement` y `human_adjudicated` describen procedencia, no una garantía ni una escala universal gold/silver. Una adjudicación puede superar en calidad un acuerdo inicial. Todos los registros siguen `not_audited` en la dimensión de auditoría independiente.
+`human_agreement` y `human_adjudicated` describen procedencia, Todos los registros siguen `not_audited` en la dimensión de auditoría independiente.
 
 La expansión léxica y su mapeo ontológico tienen estados separados. FAISS propone candidatos pendientes; el umbral 0,70 es similitud, no probabilidad de acierto. Cobertura de asignación no es exactitud.
 
@@ -44,8 +44,6 @@ Las frecuencias cuentan registros derivados de anotación, no pacientes, notas �
 Documentación: [ficha](DATASET_CARD.md), [metodología](METODOLOGIA_Y_PROCEDIMIENTO.md), [campos](ETIQUETAS_Y_CAMPOS.md), [evaluación y concordancia](EVALUACION_Y_CONCORDANCIA.md), [auditoría y pendientes](AUDITORIA_Y_CAMBIOS.md).
 
 
-
-El constructor regenera agregados, vista léxica, reporte y manifiesto desde las **ocurrencias públicas**. No reconstruye el proceso privado de anotación. El validador comprueba contrato, particiones, campos prohibidos, IDs, agregación, inventario y hashes de bytes exactos. No certifica calidad clínica ni anonimización absoluta de los valores textuales. Configuración Git/CI fuera del inventario de archivos de datos. Finales de línea LF.
 
 
 ## Revisión aceptada por el responsable
