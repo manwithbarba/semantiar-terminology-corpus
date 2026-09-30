@@ -6,7 +6,7 @@ Datos propios: **CC BY-SA 4.0**, sujeto a [NOTICE-SNOMED.md](NOTICE-SNOMED.md).
 
 ## Qué es
 
-Corpus Publico de expresiones clínicas y formas breves registradas durante la anotación de notas desidentificadas de la Historia de Salud Integrada de la Provincia de Buenos Aires. Conserva formas, expansiones, decisiones humanas, atributos de significado y propuestas de conceptos SNOMED CT. Su unidad es un registro léxico-terminológico derivado de anotación.
+Corpus Publico de expresiones clínicas y formas breves registradas durante la anotación y recuperación de conceptos clínicos y formas léxicas de notas desidentificadas de la Historia de Salud Integrada de la Provincia de Buenos Aires (n de notas=75). Conserva formas, expansiones, decisiones humanas, atributos de significado y propuestas de conceptos SNOMED CT. Su unidad es un registro léxico-terminológico derivado de anotación.
 
 ## Para qué sirve
 
