@@ -2,7 +2,7 @@
 
 [![Validate public terminology resource](https://github.com/manwithbarba/semantiar-terminology-corpus/actions/workflows/validate.yml/badge.svg)](https://github.com/manwithbarba/semantiar-terminology-corpus/actions/workflows/validate.yml)
 
-Versión: `semantiar-lexical-terminology.v2` (`v2.0.0`) · datos del 29/09/2026
+Versión: `semantiar-lexical-terminology.v2` (`v2.0.0`) ·
 Documentación revisada: 13/10/2026
 Responsable: **Julián Sánchez Viamonte**, Facultad de Ciencias Médicas, Universidad Nacional de La Plata (UNLP) · [Equipo de anotación e integrantes](INTEGRANTES_PROYECTO.md)
 Datos propios: **CC BY-SA 4.0** ([LICENSE-DATA.txt](LICENSE-DATA.txt)), sujeto a [NOTICE-SNOMED.md](NOTICE-SNOMED.md).
