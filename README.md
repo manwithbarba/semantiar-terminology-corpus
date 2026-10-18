@@ -19,11 +19,11 @@ Corpus público de expresiones clínicas y formas breves registradas durante la 
 
 ## Acceso, descarga y reutilización
 
-El repositorio es público: el README y los archivos se pueden consultar y descargar gratuitamente, sin iniciar sesión en GitHub. Acceso comprobado el 13/10/2026.
+El repositorio es público: el README y los archivos se pueden consultar y descargar gratuitamente, sin iniciar sesión en GitHub.
 
 - [Descargar el paquete de la rama main (ZIP)](https://github.com/manwithbarba/semantiar-terminology-corpus/archive/refs/heads/main.zip).
 - Para descargar un archivo individual, abrirlo en las tablas siguientes y usar **Raw** o **Download raw file**.
-- Los datos propios se distribuyen según [LICENSE-DATA.txt](LICENSE-DATA.txt), que declara **CC BY-SA 4.0**: atribución y compartir igual.
+- Los datos se distribuyen según [LICENSE-DATA.txt](LICENSE-DATA.txt), **CC BY-SA 4.0**: atribución y compartir igual.
 - El acceso público no concede derechos sobre SNOMED CT. Sus SCTID, descripciones y derivados están sujetos a las restricciones descritas en [NOTICE-SNOMED.md](NOTICE-SNOMED.md).
 
 ## Validación reproducible y reconstrucción
@@ -45,7 +45,7 @@ python validate_public_release.py
 
 ## Para qué sirve
 
-Sirve para consulta terminológica, construcción de diccionarios, estudio de variantes regionales (`es-AR`), expansión léxica y generación de candidatos SNOMED CT. La entrega no incluye notas clínicas ni permite evaluar NER, límites de spans, omisiones o interpretación contextual desde la nota. Las decisiones humanas no constituyen una referencia gold auditada para evaluar exactitud.
+Para consulta terminológica, construcción de diccionarios, estudio de variantes regionales (`es-AR`), expansión léxica y generación de candidatos SNOMED CT. Las decisiones humanas no constituyen una referencia gold auditada para evaluar exactitud.
 
 ## Archivos publicados
 
@@ -59,22 +59,22 @@ Sirve para consulta terminológica, construcción de diccionarios, estudio de va
 | [faiss_candidate_occurrences.jsonl](faiss_candidate_occurrences.jsonl) | Registros individuales FAISS; 466 sobre umbral y 6 bajo umbral (`< 0.70`) | 472 |
 | [lexical_inventory.jsonl](lexical_inventory.jsonl) | Caracterización léxica y expansiones sin candidato ontológico | 472 |
 
-Las particiones humanas y automáticas conservan los 1.560 registros publicados (`1088 + 472`). El inventario léxico es una vista de **472** registros con caracterización léxica: **no se suma** como registros adicionales. Hay 904 formas normalizadas y 899 SCTID distintos incluyendo candidatos. Las 1.365 entradas combinadas no son términos únicos: su identidad combina forma, concepto, atributos y score cuando corresponde.
+Las particiones humanas y automáticas conservan 1.560 registros publicados (`1088 + 472`). El inventario léxico es una vista de **472** registros con caracterización léxica: **no se suma** como registros adicionales. Hay 904 formas normalizadas y 899 SCTID distintos incluyendo candidatos. Las 1.365 entradas combinadas no son términos únicos: su identidad combina forma, concepto, atributos y score cuando corresponde.
 
 ### 2. Metadatos de control, auditoría y contrato técnico
 
 | Archivo | Propósito |
 |---|---|
 | [QUALITY_REPORT.json](QUALITY_REPORT.json) | Estadísticas descriptivas recalculables del corpus publicado |
-| [REVIEW_DECISIONS.json](REVIEW_DECISIONS.json) | 21 decisiones de revisión aceptadas por el responsable con trazabilidad de cambios |
+| [REVIEW_DECISIONS.json](REVIEW_DECISIONS.json) | decisiones de revisión aceptadas por el responsable con trazabilidad de cambios |
 | [SCHEMA_MAPPING.json](SCHEMA_MAPPING.json) | Esquemas JSON formales para ocurrencias (`occurrences`) y entradas agregadas (`terms`) |
 | [EXCLUSIONS.json](EXCLUSIONS.json) | Conteo de registros de entrada y exclusiones aplicadas antes de la publicación |
 | [RELEASE_MANIFEST.json](RELEASE_MANIFEST.json) | Manifiesto de versión, edición SNOMED CT, políticas de integridad y hashes SHA-256 |
-| [PUBLIC_RELEASE_ALLOWLIST.txt](PUBLIC_RELEASE_ALLOWLIST.txt) | Inventario de los 27 archivos del paquete público; el constructor lo regenera a partir de los archivos presentes |
+| [PUBLIC_RELEASE_ALLOWLIST.txt](PUBLIC_RELEASE_ALLOWLIST.txt) | Inventario de los archivos del paquete público|
 
 ## Estructura de los registros
 
-Ejemplos completos tomados de los archivos publicados, formateados para lectura. En JSONL cada registro ocupa una sola línea. Se conservan los valores de origen, sin certificar el mapeo ontológico.
+Ejemplos completos tomados de los archivos publicados, formateados para lectura. En JSONL cada registro ocupa una sola línea. Se conservan los valores de origen.
 
 ### Entrada terminológica humana (`terminology_mapping.jsonl`)
 
@@ -145,7 +145,7 @@ Ejemplos completos tomados de los archivos publicados, formateados para lectura.
 
 `human_agreement` y `human_adjudicated` describen procedencia de anotación. Todos los registros siguen con `independentAuditStatus: "not_audited"` en la dimensión de auditoría independiente.
 
-La expansión léxica y su mapeo ontológico tienen estados separados. FAISS propone candidatos pendientes; el umbral publicado es `inferenceScore >= 0.70`. El score mide similitud, no probabilidad de acierto; cobertura de asignación no es exactitud.
+La expansión léxica y su mapeo ontológico tienen estados separados. FAISS propone candidatos pendientes; el umbral publicado es `inferenceScore >= 0.70`. El score mide similitud.
 
 1. Para decisiones humanas de origen, comenzar por [terminology_mapping.jsonl](terminology_mapping.jsonl).
 2. Conservar **concepto y atributos conjuntamente**: un mapeo como `afebril -> fiebre` acompañado de polaridad negativa (`polarity`) cambia radicalmente de significado clínico si se ignora el modificador.
@@ -153,7 +153,7 @@ La expansión léxica y su mapeo ontológico tienen estados separados. FAISS pro
 4. Si se exploran ocurrencias de candidatos automáticos ([faiss_candidate_occurrences.jsonl](faiss_candidate_occurrences.jsonl)), excluir las filas marcadas con `mappingUsage == "review_only"` (que requieren validación experta).
 5. No elegir automáticamente el sentido más frecuente de superficies polisémicas (existen **184** superficies normalizadas asociadas a múltiples SCTID).
 
-Las frecuencias (`occurrenceCount`) cuentan registros derivados de anotación, no pacientes, notas únicas, prevalencia epidemiológica ni necesariamente usos del lenguaje general.
+Las frecuencias (`occurrenceCount`) cuentan registros derivados de anotación.
 
 ### Ejemplo de carga en Python
 
@@ -176,7 +176,7 @@ print(f"Entradas humanas: {len(human_terms)} | Candidatos para generación: {len
 
 ## Procedencia y documentación complementaria
 
-Se reportan 15 parejas de anotación, 15 lotes y 5 notas básicas por lote (75 asignaciones de notas; no un total verificado de notas clínicas únicas).
+Se reportan 15 parejas de anotación, 15 lotes y 5 notas básicas por lote (75 asignaciones de notas).
 
 - **Ficha del recurso:** [DATASET_CARD.md](DATASET_CARD.md)
 - **Metodología y procedimiento:** [METODOLOGIA_Y_PROCEDIMIENTO.md](METODOLOGIA_Y_PROCEDIMIENTO.md)
@@ -188,9 +188,6 @@ Se reportan 15 parejas de anotación, 15 lotes y 5 notas básicas por lote (75 a
 - **Resumen de entrada e historial documental:** [Mapear.md](Mapear.md) · [README_ORIGINAL.md](README_ORIGINAL.md)
 - **Equipo del proyecto:** [INTEGRANTES_PROYECTO.md](INTEGRANTES_PROYECTO.md)
 
-## Revisión aceptada por el responsable
-
-**Julián Sánchez Viamonte** (investigador principal). La aceptación histórica no implica auditoría independiente ni aprobación de cambios documentales posteriores. La aceptación del 29/09/2026 corresponde a las 21 decisiones documentadas en [REVIEW_DECISIONS.json](REVIEW_DECISIONS.json) y [AUDITORIA_Y_CAMBIOS.md](AUDITORIA_Y_CAMBIOS.md).
 
 ## Cómo citar
 
