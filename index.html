@@ -138,7 +138,7 @@
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.65);
         }
 
-        /* Índice de 12 solapas */
+        /* Índice de 13 solapas */
         .scene-pill {
             transition: all 0.14s ease;
             border: 1px solid rgba(51, 65, 85, 0.75);
@@ -203,6 +203,9 @@
         .note-context { color: #fcd34d; background: #30270f; }
         .note-key { margin-top: .7rem; font-size: .85rem; }
         [hidden] { display: none !important; }
+        .team-table {width:100%;border-collapse:collapse;} .team-table th,.team-table td {text-align:left;vertical-align:top;padding:.5rem;border-bottom:1px solid #334155;}
+        .team-content, .team-content * { color: #ffffff !important; }
+        .team-content h3 { color: #7dd3fc !important; }
     </style>
 </head>
 <body class="bg-grid-pattern min-h-screen flex flex-col justify-between p-2 md:p-4">
@@ -234,15 +237,15 @@
     <!-- CUERPO PRINCIPAL -->
     <main class="max-w-7xl w-full mx-auto flex-1 grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
 
-        <!-- COLUMNA IZQUIERDA (3 cols): Índice visible de 12 solapas + bloques narrativos -->
+        <!-- COLUMNA IZQUIERDA (3 cols): Índice visible de 13 solapas + bloques narrativos -->
         <aside class="lg:col-span-3 panel-frame rounded-lg p-3 flex flex-col gap-2">
             <div class="flex items-center justify-between border-b border-slate-800 pb-2">
                 <div>
                     <span class="mono text-[10px] uppercase tracking-wider text-cyan-400 font-bold block">Recorrido autoguiado</span>
-                    <h2 class="text-xs font-semibold text-slate-200">Índice de 12 solapas</h2>
+                    <h2 class="text-xs font-semibold text-slate-200">Índice de 13 solapas</h2>
                 </div>
                 <span id="nav-progress-badge" class="mono text-xs px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-cyan-300 font-bold">
-                    01 / 12
+                    01 / 13
                 </span>
             </div>
 
@@ -352,14 +355,14 @@
             <div class="px-5 py-3.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
                 <div>
                     <span class="mono text-xs text-cyan-400 font-bold uppercase">Modo de lectura continua</span>
-                    <h3 class="text-base md:text-lg font-bold text-white">Lectura completa: «SemantIAr — Anotación clínica e investigación» (12 solapas)</h3>
+                    <h3 class="text-base md:text-lg font-bold text-white">Lectura completa: «SemantIAr — Anotación clínica e investigación» (13 solapas)</h3>
                 </div>
                 <button onclick="toggleFullScriptModal()" class="mono text-xs px-3 py-1.5 rounded bg-rose-950/70 hover:bg-rose-900 text-rose-200 border border-rose-500/40 font-semibold">
                     [ Cerrar X ]
                 </button>
             </div>
             <div id="full-script-body" class="p-5 overflow-y-auto space-y-6 text-sm text-slate-200 leading-relaxed">
-                <!-- Poblado automáticamente con las 12 solapas completas -->
+                <!-- Poblado automáticamente con las 13 solapas completas -->
             </div>
         </div>
     </div>
@@ -667,6 +670,15 @@
       "INVESTIGACION: EVALUAR PROPUESTAS",
       "Las notas clinicas completas no se publican en el corpus."
     ]
+  },
+  {
+    "num": "13",
+    "title": "Quiénes conforman SemantIAr",
+    "shortText": "",
+    "protagonist": "",
+    "actionDesc": "",
+    "readingHTML": "<div class=\"team-content\"><h3>Referente de SNOMED International</h3><p>Alejandro López Osornio</p><h3>Anotadores</h3><table class=\"team-table\"><thead><tr><th>Nombre</th><th>Filiación</th></tr></thead><tbody><tr><td>Federico Alaimo</td><td>HIGA San Martín de La Plata</td></tr><tr><td>Hugo David Alfici</td><td>Hospital Madariaga, Posadas, Misiones</td></tr><tr><td>Walter Arcajo</td><td>Ministerio de Salud de Río Negro</td></tr><tr><td>Mariana Brenda Arce</td><td>Médica</td></tr><tr><td>Julieta Bliter</td><td>Ministerio de Salud del Gobierno de la Ciudad Autónoma de Buenos Aires</td></tr><tr><td>Maria Florencia Bocanegra</td><td>Mediline, Mendoza Argentina</td></tr><tr><td>Bárbara Braun</td><td>Sanatorio de la Trinidad Palermo</td></tr><tr><td>Pilar Carral</td><td>Hospital Municipal de Agudos “Dr. Leónidas Lucero”</td></tr><tr><td>Juan Manuel Castelli</td><td>Universidad Nacional de Hurlingham</td></tr><tr><td>Mariangeles Dominguez</td><td>Médica, Hospital Durand</td></tr><tr><td>Alan Joshua Esains</td><td>Lic. en Nutrición, UNMdP</td></tr><tr><td>Micaela Farré</td><td>Médica, Universidad Barceló</td></tr><tr><td>Carina Feldman</td><td>Médica, Sunchales</td></tr><tr><td>Daniela Soledad Gómez</td><td>Facultad de Medicina, UNC</td></tr><tr><td>Francisco Gonzalez</td><td>Salud Digital de la PBA</td></tr><tr><td>Rodrigo Martin Gonzalez</td><td>Médico, Hospital Paroissien</td></tr><tr><td>María Ilundain</td><td>Médica Intensivista, Uruguay</td></tr><tr><td>Emiliano Mariscal</td><td>Facultad de Medicina, UNMdP</td></tr><tr><td>María Caterina Milone</td><td>Médica, Carrera de Medicina, Universidad Nacional de la Patagonia San Juan Bosco</td></tr><tr><td>Liliana Nafissi</td><td>Farmacéutica, Dirección de Salud Digital, Mendoza</td></tr><tr><td>Lucia Ortiz</td><td>Especialista en Cardiología, Doctora en Ciencias Médicas, UNLP</td></tr><tr><td>María Elena Peña</td><td>Sanatorio Güemes</td></tr><tr><td>Emilce Piazza</td><td>Salud pública, PAMI</td></tr><tr><td>Maria Soledad Rey</td><td>Dirección Provincial de Gestión de la Información, Neuquén</td></tr><tr><td>Diego Sanchez Thomas</td><td>Hospital Italiano de Buenos Aires</td></tr><tr><td>Luisa A. Skramowskyj</td><td>Clínica y Maternidad Suizo Argentina</td></tr><tr><td>Juan Pablo Stagnaro</td><td>Facultad de Ciencias Médicas, UNLP</td></tr><tr><td>Rodolfo Nicolas Stavile</td><td>HIGA San Martín de La Plata</td></tr><tr><td>María Toledo</td><td>OSSEG</td></tr><tr><td>Rocio Milagros Vazquez Cerro</td><td>FLENI Belgrano</td></tr></tbody></table></div>",
+    "cards": []
   }
 ];
 
@@ -733,6 +745,7 @@
 
         function updateSceneUI() {
             const sc = SCENES[state.currentScene];
+            document.getElementById('scene-reading-panel').previousElementSibling.hidden = state.currentScene === 12;
             document.getElementById('nav-progress-badge').textContent = `${sc.num} / ${SCENES.length}`;
             document.getElementById('scene-num-chip').textContent = `ESCENA ${sc.num}`;
             document.getElementById('scene-title').textContent = sc.title;
@@ -815,7 +828,7 @@
         // Inicialización
         window.addEventListener('DOMContentLoaded', () => {
             buildFullScriptModal();
-            updateSceneUI();
+            goToScene(0);
 
 
         });
