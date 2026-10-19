@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SemantIAr · Anotación clínica e investigación</title>
+    <!-- Dual-Mode Tailwind: Link Estático (compatible con iframes restringidos de Google Sites) + Play CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-void: #04080e;
+            --bg-panel: #09111d;
+            --bg-card: #0c1726;
+            --cyan: #22d3ee;
+            --emerald: #10b981;
+            --amber: #f59e0b;
+            --rose: #f43f5e;
+            --violet: #a78bfa;
+            --slate: #64748b;
+            --retro-font: 'VT323', 'Courier New', monospace;
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+            font-family: var(--retro-font) !important;
+            font-weight: 400 !important; /* Evita la negrita sintética borrosa en VT323 */
+            font-variant-ligatures: none;
+        }
+        html {
+            font-size: 21.5px; /* Fuente ligeramente mayor para máxima nitidez y legibilidad */
+        }
+        body {
+            background-color: var(--bg-void);
+            color: #e2e8f0;
+            font-family: var(--retro-font) !important;
+            font-weight: 400 !important;
+            margin: 0;
+            overflow-x: hidden;
+            letter-spacing: 0.025em;
+            line-height: 1.38;
+        }
+        .mono, h1, h2, h3, h4, p, span, div, button, a, table, th, td, summary, details, code, li {
+            font-family: var(--retro-font) !important;
+            font-weight: 400 !important;
+            font-variant-ligatures: none;
+        }
+
+        /* Reemplazo de negrita/resaltado por cursiva nítida y tamaño ligeramente mayor */
+        strong, b {
+            font-weight: 400 !important;
+            font-style: italic !important;
+            font-size: 1.1em;
+            color: #7dd3fc;
+            letter-spacing: 0.03em;
+        }
+        h1, h2, h3, h4, th, .font-bold, .font-semibold, .font-extrabold {
+            font-weight: 400 !important;
+            font-style: italic !important;
+            letter-spacing: 0.03em;
+        }
+        code {
+            font-style: italic;
+            font-size: 1.06em;
+            color: #fde68a;
+            background: rgba(15, 23, 42, 0.85);
+            padding: 0 0.25rem;
+            border-radius: 3px;
+        }
+
+        /* Escala ampliada para utilidades de texto en VT323 */
+        .text-\[10px\], .text-\[11px\] {
+            font-size: 0.86rem !important;
+            line-height: 1.28 !important;
+        }
+        .text-xs {
+            font-size: 0.94rem !important;
+            line-height: 1.32 !important;
+        }
+        .text-sm {
+            font-size: 1.05rem !important;
+            line-height: 1.4 !important;
+        }
+        .text-base {
+            font-size: 1.16rem !important;
+            line-height: 1.4 !important;
+        }
+        .text-lg {
+            font-size: 1.3rem !important;
+            line-height: 1.35 !important;
+        }
+
+        /* Fondo técnico sutil con tramado CRT clásico */
+        .bg-grid-pattern {
+            background-image:
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.28) 50%),
+                linear-gradient(to right, rgba(34, 211, 238, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
+            background-size: 100% 4px, 24px 24px, 24px 24px;
+        }
+
+        /* Paleta semántica del motor ASCII (84x26) sin negrita sintética ni halo difuso:
+           - Texto resaltado (.c-B): blanco nítido en cursiva
+           - Cian (.c-M), Ámbar (.c-A), Verde (.c-E): trazos limpios de 1px */
+        .c-E { color: #34d399; }
+        .c-M { color: #38bdf8; }
+        .c-A { color: #fbbf24; }
+        .c-R { color: #fb7185; }
+        .c-V { color: #c4b5fd; }
+        .c-B { color: #ffffff; font-style: italic !important; font-weight: 400 !important; }
+        .c-S { color: #cbd5e1; }
+        .c-D { color: #64748b; }
+        .c-G { color: #1e293b; }
+
+        /* Visor ASCII determinista (84 columnas x 26 filas) ligeramente mayor y sin desenfoque */
+        .ascii-screen {
+            font-family: var(--retro-font) !important;
+            font-weight: 400 !important;
+            font-variant-ligatures: none;
+            line-height: 1.14;
+            letter-spacing: 0px !important;
+            white-space: pre;
+            user-select: text;
+            font-size: clamp(14.5px, 1.65vw, 21.5px);
+            background:
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
+                radial-gradient(circle at 50% 35%, rgba(12, 28, 48, 0.96) 0%, rgba(4, 8, 14, 0.99) 100%);
+            background-size: 100% 4px, 100% 100%;
+            border: 2px solid rgba(34, 211, 238, 0.38);
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9), 0 0 24px rgba(34, 211, 238, 0.12);
+        }
+
+        .panel-frame {
+            background: rgba(9, 17, 29, 0.94);
+            border: 1px solid rgba(51, 65, 85, 0.85);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.65);
+        }
+
+        /* Índice de 12 solapas */
+        .scene-pill {
+            transition: all 0.14s ease;
+            border: 1px solid rgba(51, 65, 85, 0.75);
+            background: rgba(9, 17, 29, 0.8);
+        }
+        .scene-pill:hover {
+            border-color: rgba(34, 211, 238, 0.65);
+            background: rgba(15, 23, 42, 0.95);
+        }
+        .scene-pill.active {
+            border-color: #22d3ee;
+            background: linear-gradient(90deg, rgba(34, 211, 238, 0.2) 0%, rgba(16, 185, 129, 0.1) 100%);
+            box-shadow: inset 4px 0 0 #22d3ee;
+        }
+
+        .action-chip {
+            transition: all 0.14s ease;
+            border: 1px solid rgba(51, 65, 85, 0.9);
+            background: rgba(15, 23, 42, 0.9);
+        }
+        .action-chip:hover {
+            border-color: #22d3ee;
+            color: #ecfeff;
+        }
+        .action-chip.active {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.22);
+            color: #a7f3d0;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+        }
+        .action-chip.amber-active {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.22);
+            color: #fde68a;
+        }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #04080e; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #22d3ee; }
+    
+        #scene-reading-panel, #scene-detail-cards, #full-script-body { font-size: 1.15rem; line-height: 1.55; }
+        #scene-reading-panel strong, #scene-detail-cards strong { font-style: normal !important; font-size: 1em; }
+        #scene-protagonist-tag, #scene-short-text { display: none !important; }
+        #scene-reading-panel p + p { margin-top: .8rem; }
+
+        /* Lectura clínica: conservar el arte retro y dar prioridad al texto. */
+        #scene-reading-panel { max-width: 72ch; }
+        .scene-label { white-space: normal; }
+        #scene-index-list { max-height: none; }
+        button:disabled { opacity: .45; cursor: default; }
+        .ascii-screen { background-image: none !important; }
+        button:focus-visible, summary:focus-visible, a:focus-visible {
+            outline: 3px solid var(--amber); outline-offset: 3px;
+        }
+
+        .example-note { border-left: 3px solid var(--cyan); padding: .6rem 1rem; margin-bottom: 1rem; background: var(--bg-card); }
+        .example-note h3 { font-style: normal !important; color: #cbd5e1; font-size: .9rem; margin-bottom: .5rem; }
+        .example-note p { line-height: 1.6; }
+        .note-clinical { color: #67e8f9; border-bottom: 1px solid #67e8f9; }
+        .note-lexical { color: #d8b4fe; background: #291e3e; padding: 0 .1rem; border-bottom: 2px dotted #d8b4fe; }
+        .note-context { color: #fcd34d; background: #30270f; }
+        .note-key { margin-top: .7rem; font-size: .85rem; }
+        [hidden] { display: none !important; }
+    </style>
+</head>
+<body class="bg-grid-pattern min-h-screen flex flex-col justify-between p-2 md:p-4">
+
+    <!-- ENCABEZADO SUPERIOR: Lema, Pregunta Doctoral y Referencia Terminológica Congelada -->
+    <header class="max-w-7xl w-full mx-auto panel-frame rounded-lg px-4 py-3 mb-3">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+            <div class="flex items-start sm:items-center gap-3">
+                <div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <h1 class="text-sm md:text-base font-bold tracking-tight text-white">
+                            SemantIAr — Anotación clínica e investigación
+                        </h1>
+                    </div>
+                    <p class="text-xs text-emerald-300 mt-0.5">Del texto clínico a la evaluación de las propuestas automáticas.</p>
+                </div>
+            </div>
+
+            <!-- Controles globales y Referencia SNOMED congelada -->
+            <div class="flex flex-wrap items-center gap-2">
+
+                <button id="btn-static-script" onclick="toggleFullScriptModal()" class="mono text-xs px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 transition">
+                    [ Leer todo ]
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CUERPO PRINCIPAL -->
+    <main class="max-w-7xl w-full mx-auto flex-1 grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
+
+        <!-- COLUMNA IZQUIERDA (3 cols): Índice visible de 12 solapas + bloques narrativos -->
+        <aside class="lg:col-span-3 panel-frame rounded-lg p-3 flex flex-col gap-2">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <div>
+                    <span class="mono text-[10px] uppercase tracking-wider text-cyan-400 font-bold block">Recorrido autoguiado</span>
+                    <h2 class="text-xs font-semibold text-slate-200">Índice de 12 solapas</h2>
+                </div>
+                <span id="nav-progress-badge" class="mono text-xs px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-cyan-300 font-bold">
+                    01 / 12
+                </span>
+            </div>
+
+            <!-- Lista del recorrido -->
+            <div id="scene-index-list" class="space-y-1 max-h-[460px] overflow-y-auto pr-1">
+                <!-- Generado dinámicamente -->
+            </div>
+
+            <!-- Controles de navegación principales: Anterior / Siguiente / Reiniciar -->
+            <div class="pt-2 border-t border-slate-800 flex items-center justify-between gap-1.5 mono text-xs">
+                <button onclick="prevScene()" id="btn-prev" class="flex-1 py-1.5 px-2 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 transition font-semibold">
+                    &lt; Anterior
+                </button>
+                <button onclick="nextScene()" id="btn-next" class="flex-1 py-1.5 px-2 rounded bg-cyan-900/60 hover:bg-cyan-800/70 text-cyan-200 border border-cyan-500/50 transition font-semibold">
+                    Siguiente &gt;
+                </button>
+                <button onclick="resetWalkthrough()" class="py-1.5 px-2.5 rounded bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 transition" title="Volver a la escena 01 y reiniciar estados interactivos">
+                    Reiniciar
+                </button>
+            </div>
+        </aside>
+
+        <!-- COLUMNA CENTRAL Y DERECHA (9 cols): Lienzo ASCII + Explicación + Tarjetas de detalle -->
+        <section class="lg:col-span-9 flex flex-col gap-3">
+
+            <!-- Barra de estado de la escena actual -->
+            <div class="panel-frame rounded-lg px-4 py-2.5 flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center gap-2.5">
+                    <span id="scene-num-chip" class="mono text-xs font-extrabold px-2 py-0.5 rounded bg-cyan-500/20 border border-cyan-400 text-cyan-300">
+                        ESCENA 01
+                    </span>
+                    <h2 id="scene-title" class="text-base md:text-lg font-bold text-white">
+                        Pregunta guía
+                    </h2>
+                </div>
+
+            </div>
+
+            <!-- PANEL DE LECTURA Y TARJETAS DESPLEGABLES ("Ver detalle") -->
+            <div class="flex flex-col gap-3">
+                <!-- Explicación principal -->
+                <div class="md:col-span-7 panel-frame rounded-lg p-4 flex flex-col justify-between gap-3">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-2.5">
+                            <span class="mono text-xs uppercase tracking-wider text-cyan-400 font-bold">
+                                Explicación
+                            </span>
+                            <span hidden id="scene-protagonist-tag" class="mono text-[11px] px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-slate-300">
+                                Estado: Lectura autoguiada
+                            </span>
+                        </div>
+                        <div id="scene-reading-panel" class="text-sm text-slate-200 leading-relaxed space-y-2.5">
+                            <!-- Contenido narrativo principal de la escena -->
+                        </div>
+                    </div>
+
+                    <!-- Explicación de qué ocurre visualmente -->
+                    <div hidden class="pt-2.5 border-t border-slate-800/80">
+                        <span class="mono text-[11px] text-slate-400 font-semibold block mb-1">Qué pasa en pantalla:</span>
+                        <p id="scene-action-desc" class="text-xs text-slate-300 leading-relaxed">
+                            <!-- Descripción de la acción visual -->
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Columna de tarjetas secundarias y desplegables "Ver detalle" -->
+                <div class="md:col-span-5 panel-frame rounded-lg p-4 flex flex-col justify-between gap-3">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-2.5">
+                            <span class="mono text-xs uppercase tracking-wider text-amber-400 font-bold">
+                                Para ampliar
+                            </span>
+                        </div>
+                        <div id="scene-detail-cards" class="space-y-2.5">
+                            <!-- Tarjetas fijas o desplegables ("Ver detalle") -->
+                        </div>
+                    </div>
+
+                    <div class="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] mono text-slate-400">
+                        <span>Atajos: [← / →] cambiar escena</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA: Enlaces directos verificados y criterios editoriales -->
+    <footer class="max-w-7xl w-full mx-auto mt-3 panel-frame rounded-lg px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400">
+        <div class="flex flex-wrap items-center gap-2">
+            <span class="mono text-slate-300 font-semibold">SemantIAr (2026):</span>
+            <span>Ejemplos sintéticos · Estado del proyecto: 19 de octubre de 2026.</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 mono text-xs">
+            <a href="https://manwithbarba.github.io/semantiar_anotador/" target="_blank" rel="noopener noreferrer" class="text-cyan-300 hover:text-cyan-200 underline">
+                [ Abrir el anotador ↗ ]
+            </a>
+            <a href="https://github.com/manwithbarba/semantiar-terminology-corpus/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="text-emerald-300 hover:text-emerald-200 underline">
+                [ Consultar el corpus público ↗ ]
+            </a>
+        </div>
+    </footer>
+
+    <!-- MODAL DE LECTURA ESTÁTICA COMPLETA ("Ver todo el guion") -->
+    <div id="full-script-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-3 md:p-6">
+        <div class="panel-frame rounded-xl max-w-5xl w-full max-h-[90vh] flex flex-col border border-cyan-500/40 overflow-hidden">
+            <div class="px-5 py-3.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                <div>
+                    <span class="mono text-xs text-cyan-400 font-bold uppercase">Modo de lectura continua</span>
+                    <h3 class="text-base md:text-lg font-bold text-white">Lectura completa: «SemantIAr — Anotación clínica e investigación» (12 solapas)</h3>
+                </div>
+                <button onclick="toggleFullScriptModal()" class="mono text-xs px-3 py-1.5 rounded bg-rose-950/70 hover:bg-rose-900 text-rose-200 border border-rose-500/40 font-semibold">
+                    [ Cerrar X ]
+                </button>
+            </div>
+            <div id="full-script-body" class="p-5 overflow-y-auto space-y-6 text-sm text-slate-200 leading-relaxed">
+                <!-- Poblado automáticamente con las 12 solapas completas -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ============================================================================
+         * 1. MOTOR MATRICIAL ASCII DETERMINISTA (84 COLUMNAS x 26 FILAS)
+         * ============================================================================ */
+        const state = { currentScene: 0 };
+
+        /* ============================================================================
+         * 3. RECORRIDO LINEAL DE 12 SOLAPAS (2026-10-19)
+         * ============================================================================ */
+        const SCENES = [
+  {
+    "num": "01",
+    "title": "Pregunta guía",
+    "shortText": "",
+    "protagonist": "",
+    "actionDesc": "",
+    "readingHTML": "<p>¿Puedo confiar —y con qué grado de confianza— en lo que recuperan las herramientas de procesamiento del lenguaje natural (PLN)?</p><p>Para responder, SemantIAr reúne interpretaciones de profesionales de la salud y las compara con propuestas automáticas. El recorrido sigue ese trabajo: preparar las notas, anotarlas y evaluar el sistema.</p>",
+    "cards": [
+      {
+        "title": "De dónde nace esta necesidad",
+        "body": "<p>Las historias clínicas combinan campos estructurados con texto libre. En las notas, los profesionales describen síntomas, razonamientos, procedimientos y tratamientos con palabras propias. Esa información queda distribuida entre registros y expresada de distintas maneras.</p><p>Un mismo concepto puede escribirse como «dolor de cabeza» o «cefalea». También aparecen formas breves como «Rx», variaciones locales y errores de escritura. A su vez, «fiebre» y «Niega fiebre» contienen la misma palabra, pero expresan situaciones clínicas diferentes. Buscar palabras aisladas no alcanza para recuperar su significado.</p><p>Vincular esas menciones con una terminología común, como SNOMED CT, permite organizar la información para su consulta, comparación e investigación. Pero una propuesta automática puede asociar una mención al concepto equivocado o perder su contexto, incluso cuando parece segura.</p><p>De ahí nace la pregunta guía: además de recuperar información del texto, necesitamos evaluar cuándo podemos confiar en lo recuperado. La tesis estudia si la estabilidad de las propuestas aporta información para reconocer errores y orientar su revisión.</p>",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      }
+    ],
+    "visual": [
+      "NOTAS CLINICAS",
+      "ANOTACION HUMANA",
+      "EVALUACION DEL SISTEMA",
+      "Una pregunta: ¿cuanto podemos confiar?"
+    ]
+  },
+  {
+    "num": "02",
+    "title": "Qué vamos a interpretar",
+    "shortText": "",
+    "protagonist": "",
+    "actionDesc": "",
+    "readingHTML": "<p>Vamos a extraer conceptos clínicos y formas léxicas del texto libre de notas clínicas de la Historia de Salud Integrada (HSI).</p><p>La siguiente nota sintética muestra el tipo de texto que vamos a interpretar y acompaña los ejemplos del recorrido.</p>",
+    "cards": [],
+    "visual": [
+      "TEXTO: Niega fiebre",
+      "MENCION: fiebre",
+      "CONTEXTO: negada",
+      "Reconocer la palabra no alcanza: hay que interpretarla."
+    ]
+  },
+  {
+    "num": "03",
+    "title": "De dónde salen las notas",
+    "shortText": "",
+    "protagonist": "",
+    "actionDesc": "",
+    "readingHTML": "<p>Las notas proceden de registros desidentificados de la Historia de Salud Integrada (HSI) de la Provincia de Buenos Aires.</p><p>El proyecto cuenta con autorización del Comité Central de Ética del Ministerio de Salud de la Provincia de Buenos Aires y de COBIMED, de la Facultad de Ciencias Médicas de la Universidad Nacional de La Plata.</p><p>Se seleccionaron notas ambulatorias y de internación de la base HSI de junio de 2026.</p><p>La selección buscó variedad de especialidades, instituciones y formas de escribir. Antes de distribuirlas se aplicaron procedimientos de desidentificación para reducir la exposición de datos personales.</p>",
+    "cards": [
+      {
+        "title": "Cómo se seleccionaron",
+        "body": "Se organizaron dos grupos de longitud: 10–49 y 50–99 tokens (unidades de texto usadas para el cómputo). Cada celda o archivo de distribución contiene 50 notas: 25 ambulatorias y 25 de internación. La selección considera diversidad léxica, complejidad y estilo, con una semilla reproducible.",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      },
+      {
+        "title": "Cómo se protegieron los datos",
+        "body": "Se aplicó Microsoft Presidio y reglas para patrones locales de nombres, documentos, fechas, teléfonos y otros identificadores. Después se controló nuevamente la longitud. Los reemplazos se hicieron dentro del mismo dominio y grupo de longitud. La desidentificación reduce riesgos; no es una garantía automática de anonimización absoluta.",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      },
+      {
+        "title": "Tamaño del diseño",
+        "body": "El marco documentado comprende 2.400 notas. La muestra definitiva prevista incluye 1.000 notas con asistencia de marcas y 200 reservadas sin marcas previas (Core Blind). Las otras 1.200 quedan en reserva.",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      }
+    ],
+    "visual": [
+      "HISTORIA DE SALUD INTEGRADA",
+      "SELECCION Y DESIDENTIFICACION",
+      "NOTAS PARA ANOTAR",
+      "Origen y resguardo antes de distribuir las notas."
+    ]
+  },
+  {
+    "num": "04",
+    "title": "Quiénes anotan y cómo se preparan",
+    "shortText": "",
+    "protagonist": "",
+    "actionDesc": "",
+    "readingHTML": "<p>Más de 100 personas se inscribieron para participar en la anotación.</p><p>Las tres primeras rondas se dedicaron a calibrar criterios y ajustar el trabajo con la herramienta. Después se produjo el primer corpus público: una colección de registros derivados de las anotaciones.</p>",
+    "cards": [
+      {
+        "title": "Qué significa calibrar",
+        "body": "La calibración permite revisar cómo se reconocen las menciones, se eligen los conceptos y se registran sus atributos. La inscripción no equivale a participación efectiva ni a aprobación de una evaluación.",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      },
+      {
+        "title": "Notas por ronda",
+        "body": "<p>Cada persona recibió 10, 5, 2, 5 y 5 notas en las rondas 1 a 5, respectivamente.</p><p>La tercera ronda, de dos notas, se utilizó para calibración y actualización de la interfaz. </p>",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      }
+    ],
+    "visual": [
+      "PERSONAS INSCRIPTAS",
+      "CALIBRACION DE CRITERIOS",
+      "ANOTACIONES HUMANAS",
+      "Calibrar ayuda a compartir criterios de trabajo."
+    ]
+  },
+  {
+    "num": "05",
+    "title": "Leer, marcar y decidir",
+    "shortText": "",
+    "protagonist": "",
+    "actionDesc": "",
+    "readingHTML": "<p>Primero se lee toda la nota. Después se revisan las marcas sugeridas, se ajustan sus límites y se agregan omisiones. Por último se decide sobre cada aparición, una por vez.</p><p>En nuestra nota se marca «fiebre» como mención clínica. «Niega» queda como pista para interpretar esa mención. Las marcas de colores muestran qué se está revisando.</p>",
+    "cards": [
+      {
+        "title": "Qué se delimita",
+        "body": "<p>Una mención es una aparición concreta de una expresión en la nota. Puede ocupar una palabra, como «fiebre», o varias, como «dolor de cabeza». Si una expresión aparece dos veces, son dos menciones y cada una se interpreta en su contexto.</p><p>Delimitar una mención es seleccionar exactamente las palabras que la expresan. En «Niega fiebre» se marca «fiebre»; «Niega» aporta la pista para registrar su polaridad.</p>",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      }
+    ],
+    "visual": [
+      "1. LEER LA NOTA COMPLETA",
+      "2. MARCAR Y AJUSTAR",
+      "3. DECIDIR CADA APARICION",
+      "Una sugerencia requiere revision humana."
+    ]
+  },
+  {
+    "num": "06",
+    "title": "Qué significa cada expresión",
+    "shortText": "",
+    "protagonist": "",
+    "actionDesc": "",
+    "readingHTML": "<p>En esta nota, «Rx» significa «radiografía». Se registra ese significado para esta aparición de la forma breve.</p><p>«Rx de tórax» también expresa un procedimiento: necesita una decisión clínica y una decisión sobre la forma breve. «Fiebre» requiere una decisión clínica. Una marca que no corresponde se clasifica como «No anotar».</p>",
+    "cards": [
+      {
+        "title": "Qué es una forma breve y qué se registra",
+        "body": "<p>Una forma breve es una expresión abreviada, como una abreviatura, sigla o acrónimo. En nuestra nota, «Rx» es una forma breve; su significado en esa aparición es «radiografía».</p><ul><li><strong>Forma:</strong> cómo está escrita la expresión: «Rx».</li><li><strong>Sentido:</strong> qué significa aquí: «radiografía».</li><li><strong>Función:</strong> qué papel cumple en esa parte de la nota; aquí nombra una entidad clínica, el procedimiento solicitado. En otros casos puede ser un encabezado, un valor o un modificador.</li><li><strong>Ubicación:</strong> en qué parte de la nota aparece, por ejemplo en antecedentes o en el plan de estudios. En el ejemplo está en la oración que solicita un estudio.</li><li><strong>Pistas:</strong> qué información ayuda a interpretar el sentido. Aquí, «Se solicita» y «de tórax» orientan la lectura de «Rx» como radiografía.</li></ul><p>Si el contexto no permite resolver el sentido, se registra esa incertidumbre según el protocolo.</p>",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      }
+    ],
+    "visual": [
+      "Rx = radiografia",
+      "Rx de torax = procedimiento",
+      "Una aparicion puede tener ambas capas",
+      "Ejemplo tomado de la misma nota sintetica."
+    ]
+  },
+  {
+    "num": "07",
+    "title": "Qué concepto SNOMED CT corresponde",
+    "shortText": "",
+    "protagonist": "",
+    "actionDesc": "",
+    "readingHTML": "<p>Hallazgo clínico, Fármaco y Procedimiento son las tres jerarquías de SNOMED CT que se utilizan en el proyecto. La persona busca dentro de ellas el concepto que corresponde a cada mención.</p><p>En la nota, «dolor de cabeza» y «fiebre» corresponden a Hallazgo clínico; «paracetamol», a Fármaco; y «Rx de tórax», interpretada como radiografía de tórax, a Procedimiento.</p>",
+    "cards": [
+      {
+        "title": "Referencia y búsqueda",
+        "body": "Se usa la edición argentina de mayo de 2026. Las jerarquías documentadas son Hallazgo clínico (404684003), Procedimiento (71388002) y Fármaco (373873005). El buscador del anotador consulta un servidor terminológico. La recuperación experimental del proyecto doctoral utiliza otros componentes.",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      }
+    ],
+    "visual": [
+      "MENCION EN EL TEXTO",
+      "BUSQUEDA EN SNOMED CT",
+      "CONCEPTO QUE CORRESPONDE",
+      "Hallazgo clinico · Procedimiento · Farmaco"
+    ]
+  },
+  {
+    "num": "08",
+    "title": "Qué dice el contexto clínico",
+    "shortText": "",
+    "protagonist": "",
+    "actionDesc": "",
+    "readingHTML": "<p>Para «fiebre», «Niega» indica polaridad negada. En este ejemplo la negación es explícita: certeza Confirmado, temporalidad Actual y sujeto Paciente.</p><p>Estos cuatro atributos describen lo expresado en la nota. La certeza clínica no es la confianza en una predicción del sistema.</p>",
+    "cards": [],
+    "visual": [
+      "POLARIDAD Y CERTEZA",
+      "TEMPORALIDAD",
+      "SUJETO",
+      "Negado · Confirmado · Actual · Paciente (ejemplo)"
+    ]
+  },
+  {
+    "num": "09",
+    "title": "Completar la nota y conservar el trabajo",
+    "shortText": "",
+    "protagonist": "",
+    "actionDesc": "",
+    "readingHTML": "<p>Se revisan todas las apariciones de la nota: dolor de cabeza, fiebre, Rx de tórax y paracetamol. Cada una queda resuelta en las capas que le corresponden.</p><p>Al terminar se cierra la nota como «Revisada con conceptos» y se descarga el archivo de avance (JSON) para conservar las decisiones.</p>",
+    "cards": [
+      {
+        "title": "Qué significa cerrar una nota",
+        "body": "El cierre indica que se completó la revisión de la nota y las decisiones exigidas. Los estados son «Revisada con conceptos» o «Sin conceptos anotables».",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      }
+    ],
+    "visual": [
+      "RESOLVER LAS MARCAS",
+      "CERRAR LA REVISION DE LA NOTA",
+      "DESCARGAR EL ARCHIVO DE AVANCE",
+      "Decidir, cerrar y guardar son acciones diferentes."
+    ]
+  },
+  {
+    "num": "10",
+    "title": "Cómo se revisan las diferencias",
+    "shortText": "",
+    "protagonist": "",
+    "actionDesc": "",
+    "readingHTML": "<p>Al cierre de la quinta ronda, el equipo está organizado en 16 parejas de anotadores.</p><p>El investigador principal adjudicó las discrepancias correspondientes a la cuarta ronda publicada. Adjudicar significa revisar las diferencias y registrar la decisión que se conserva.</p><p>Por ejemplo, si una persona registra «fiebre» como afirmada y otra como negada, se vuelve a «Niega fiebre» para resolver la diferencia.</p>",
+    "cards": [],
+    "visual": [
+      "ANOTACIONES DE LAS PAREJAS",
+      "REVISION DE DISCREPANCIAS",
+      "DECISION REGISTRADA",
+      "Adjudicar significa resolver y documentar diferencias."
+    ]
+  },
+  {
+    "num": "11",
+    "title": "Cómo se evalúa el sistema",
+    "shortText": "",
+    "protagonist": "",
+    "actionDesc": "",
+    "readingHTML": "<p>Sobre la misma nota, se comprueba si el sistema detecta «fiebre», delimita la mención, propone el concepto correspondiente y recupera que está negada.</p><p>Se compara cada tarea con la referencia humana que corresponda al análisis. También se estudia si las señales de incertidumbre ayudan a reconocer errores o priorizar revisiones.</p><p>El significado de «Rx», el concepto de «Rx de tórax» y la negación de «fiebre» son problemas diferentes. Las señales siguen en evaluación.</p>",
+    "cards": [
+      {
+        "title": "Qué hacen GLiNER, SapBERT y FAISS",
+        "body": "<p><strong>GLiNER</strong> es un modelo de inteligencia artificial que localiza menciones en el texto, por ejemplo «fiebre» o «paracetamol».</p><p><strong>SapBERT</strong> es un modelo de lenguaje biomédico que ayuda a comparar el significado de una mención con las denominaciones de los conceptos. Por ejemplo, permite buscar candidatos para «dolor de cabeza» aunque sus nombres usen otra expresión, como «cefalea».</p><p><strong>FAISS</strong> es una herramienta de búsqueda que permite encontrar rápidamente los conceptos candidatos a partir de las representaciones que produce SapBERT.</p><p>En conjunto: localizar la mención, buscar conceptos posibles y registrar la propuesta para evaluarla.</p>",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      },
+      {
+        "title": "Qué se comparó en la cuarta entrega",
+        "body": "Una evaluación inicial utilizó 52 notas y 181 menciones con consenso estricto. Eran positivos parciales: no una referencia exhaustiva que permitiera considerar error toda predicción adicional. La adjudicación posterior de discrepancias constituye otra etapa.",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      },
+      {
+        "title": "Qué mide la señal semántica",
+        "body": "El Índice de Incertidumbre Semántica (IIS) explora la estabilidad de recuperación bajo perturbaciones. Su relación con el error y su utilidad para revisar o abstenerse requieren evaluación.",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      },
+      {
+        "title": "Qué se distingue en léxico y contexto",
+        "body": "En lo léxico se separan identificación y límites de la mención de la resolución del sentido de una forma breve. En lo contextual se estudian polaridad, certeza, temporalidad y sujeto. Las señales no se combinan aquí en un porcentaje único de confianza.",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      }
+    ],
+    "visual": [
+      "PROPUESTA AUTOMATICA",
+      "COMPARACION CON REFERENCIAS HUMANAS",
+      "ERRORES E INCERTIDUMBRE",
+      "Se evaluan expresiones, conceptos y contexto por separado."
+    ]
+  },
+  {
+    "num": "12",
+    "title": "Qué aporta el proyecto y dónde seguir",
+    "shortText": "",
+    "protagonist": "",
+    "actionDesc": "",
+    "readingHTML": "<p>El aporte central que busca la tesis es determinar si la estabilidad de las propuestas automáticas aporta información adicional para reconocer errores al vincular menciones con conceptos SNOMED CT en español rioplatense. Para estudiarlo, compara la recuperación habitual con una alternativa que repite la búsqueda con pequeñas variaciones.</p><p>El proyecto reúne notas desidentificadas, decisiones humanas trazables y un sistema de evaluación reproducible. Así se puede estudiar qué menciones se interpretan, qué conceptos se proponen y en qué casos el sistema deja la decisión sin resolver.</p><p>El anotador y el corpus terminológico público son recursos derivados de ese trabajo. El corpus comparte expresiones, significados, conceptos y atributos sin publicar las notas clínicas completas. La utilidad del índice para priorizar revisiones sigue siendo una pregunta de investigación.</p>",
+    "cards": [
+      {
+        "title": "Consultar los recursos",
+        "body": "<a href=\"https://manwithbarba.github.io/semantiar_anotador/\" target=\"_blank\" rel=\"noopener noreferrer\">Abrir el anotador</a><br><a href=\"https://github.com/manwithbarba/semantiar-terminology-corpus/blob/main/README.md\" target=\"_blank\" rel=\"noopener noreferrer\">Consultar el corpus público</a>",
+        "badge": "Detalle",
+        "badgeColor": "cyan",
+        "openByDefault": false
+      }
+    ],
+    "visual": [
+      "ANOTADOR: DECISIONES HUMANAS",
+      "CORPUS: REGISTROS DERIVADOS",
+      "INVESTIGACION: EVALUAR PROPUESTAS",
+      "Las notas clinicas completas no se publican en el corpus."
+    ]
+  }
+];
+
+        /* ============================================================================
+         * 4. LIENZO ASCII DEL RECORRIDO (84x26)
+         * ============================================================================ */
+        function renderSceneIndex() {
+            const listEl = document.getElementById('scene-index-list');
+            listEl.innerHTML = SCENES.map((sc, i) => {
+                const isAct = i === state.currentScene;
+                return `
+                    <button onclick="goToScene(${i})" aria-current="${isAct ? 'step' : 'false'}" class="scene-pill ${isAct ? 'active' : ''} w-full text-left px-2.5 py-1.5 rounded flex items-center justify-between gap-2">
+                        <div class="scene-label">
+                            <span class="mono text-[11px] font-bold ${isAct ? 'text-cyan-300' : 'text-slate-400'}">${sc.num}</span>
+                            <span class="text-xs ml-1.5 ${isAct ? 'text-white font-semibold' : 'text-slate-300'}">${sc.title}</span>
+                        </div>
+                        <span class="mono text-[10px] ${isAct ? 'text-emerald-400' : 'text-slate-600'}">${isAct ? '●' : ''}</span>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function renderDetailCards(sc) {
+            const container = document.getElementById('scene-detail-cards');
+            const badgeColors = {
+                emerald: 'bg-emerald-950/80 text-emerald-300 border-emerald-500/40',
+                cyan:    'bg-cyan-950/80 text-cyan-300 border-cyan-500/40',
+                amber:   'bg-amber-950/80 text-amber-300 border-amber-500/40',
+                violet:  'bg-purple-950/80 text-purple-300 border-purple-500/40'
+            };
+
+            container.parentElement.parentElement.hidden = sc.cards.length === 0;
+            container.innerHTML = sc.cards.map((c, idx) => {
+                const bCls = badgeColors[c.badgeColor] || badgeColors.cyan;
+                return `
+                    <details class="group rounded-lg bg-slate-900/90 border border-slate-800 overflow-hidden" ${c.openByDefault ? 'open' : ''}>
+                        <summary class="cursor-pointer px-3 py-2 flex items-center justify-between gap-2 hover:bg-slate-800/70 select-none">
+                            <span class="text-xs font-semibold text-slate-100">${c.title}</span>
+                            <span class="mono text-[10px] px-1.5 py-0.5 rounded border ${bCls} shrink-0">${c.badge}</span>
+                        </summary>
+                        <div class="px-3 py-2.5 text-xs text-slate-300 border-t border-slate-800/80 leading-relaxed">
+                            ${c.body}
+                        </div>
+                    </details>
+                `;
+            }).join('');
+        }
+
+        function exampleNote(sceneIndex) {
+            if (!(sceneIndex === 1 || (sceneIndex >= 4 && sceneIndex <= 10))) return '';
+            const mark = (text, type) => `<span class="note-${type}">${text}</span>`;
+            const clinical = text => mark(text, 'clinical');
+            const lexical = text => mark(text, 'lexical');
+            const context = text => mark(text, 'context');
+            return `<section class="example-note" aria-label="Nota sintética de referencia">
+                <h3>Nota sintética · ejemplo del recorrido</h3>
+                <p>${context('Paciente')} consulta ${context('hoy')} por ${clinical('dolor de cabeza')}.
+                ${context('Niega')} ${clinical('fiebre')}. Se solicita ${clinical(lexical('Rx') + ' de tórax')}.
+                Refiere uso ${context('actual')} de ${clinical('paracetamol')}.</p>
+                <p class="note-key"><span class="note-clinical">Mención clínica</span> ·
+                <span class="note-lexical">Forma breve</span> · <span class="note-context">Pista de contexto</span></p>
+            </section>`;
+        }
+
+        function updateSceneUI() {
+            const sc = SCENES[state.currentScene];
+            document.getElementById('nav-progress-badge').textContent = `${sc.num} / ${SCENES.length}`;
+            document.getElementById('scene-num-chip').textContent = `ESCENA ${sc.num}`;
+            document.getElementById('scene-title').textContent = sc.title;
+            document.getElementById('scene-protagonist-tag').textContent = sc.protagonist;
+            document.getElementById('scene-reading-panel').innerHTML = state.currentScene === 1
+                ? sc.readingHTML + exampleNote(state.currentScene)
+                : exampleNote(state.currentScene) + sc.readingHTML;
+            document.getElementById('scene-action-desc').textContent = sc.actionDesc;
+
+            document.getElementById('btn-prev').disabled = state.currentScene === 0;
+            document.getElementById('btn-next').disabled = state.currentScene === SCENES.length - 1;
+            renderSceneIndex();
+            renderDetailCards(sc);
+        }
+
+        function goToScene(index) {
+            state.currentScene = Math.max(0, Math.min(SCENES.length - 1, index));
+            updateSceneUI();
+        }
+
+        function nextScene() {
+            if (state.currentScene < SCENES.length - 1) {
+                goToScene(state.currentScene + 1);
+            }
+        }
+
+        function prevScene() {
+            if (state.currentScene > 0) {
+                goToScene(state.currentScene - 1);
+            }
+        }
+
+        function resetWalkthrough() {
+            goToScene(0);
+        }
+
+        function buildFullScriptModal() {
+            const body = document.getElementById('full-script-body');
+            body.innerHTML = SCENES.map((sc, i) => `
+                <article class="p-4 rounded-lg bg-slate-900/90 border border-slate-800 space-y-2">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
+                        <h4 class="text-base font-bold text-white">
+                            <span class="mono text-cyan-400">Escena ${sc.num} ·</span> ${sc.title}
+                        </h4>
+                        <button onclick="toggleFullScriptModal(); goToScene(${i});" class="mono text-xs px-2.5 py-1 rounded bg-cyan-950 hover:bg-cyan-900 text-cyan-200 border border-cyan-500/40">
+                            [ Ir a esta escena interactiva → ]
+                        </button>
+                    </div>
+                    
+                    <div class="text-sm text-slate-200 space-y-1.5">${sc.readingHTML}${i === 1 ? exampleNote(i) : ''}</div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
+                        ${sc.cards.map(c => `
+                            <div class="p-2.5 rounded bg-slate-950/80 border border-slate-800 text-xs text-slate-300">
+                                <div class="font-bold text-cyan-300 mb-1">${c.title}</div>
+                                <div>${c.body}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function toggleFullScriptModal() {
+            const modal = document.getElementById('full-script-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Navegación por teclado (flechas izquierda/derecha)
+        window.addEventListener('keydown', (e) => {
+            if (e.target && ['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
+            if (e.key === 'ArrowRight') nextScene();
+            if (e.key === 'ArrowLeft') prevScene();
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('full-script-modal');
+                if (!modal.classList.contains('hidden')) modal.classList.add('hidden');
+            }
+        });
+
+        // Inicialización
+        window.addEventListener('DOMContentLoaded', () => {
+            buildFullScriptModal();
+            updateSceneUI();
+
+
+        });
+    </script>
+</body>
+</html>
